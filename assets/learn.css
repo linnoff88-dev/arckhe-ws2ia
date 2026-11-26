@@ -9,11 +9,11 @@
                               --border --primary --accent --accent-2.
                               >>> A PÁGINA CONSOME SÓ ESTE NÍVEL. <<<
 
-   DOIS LAYERS ORTOGONAIS (decisão travada):
-     Layer 1 (claro/escuro) = classe .dark do Tailwind (NÃO migrar root p/ data-theme).
+   DOIS LAYERS ORTOGONAIS (decisêo travada):
+     Layer 1 (claro/escuro) = classe .dark do Tailwind (NêO migrar root p/ data-theme).
      Layer 2 (variante leitura) = atributo data-theme no <html> (sepia/foco/contraste).
 
-   Este arquivo NÃO redefine utilitários Tailwind. Estiliza só:
+   Este arquivo NêO redefine utilitários Tailwind. Estiliza só:
      - os tokens semânticos (nível 3),
      - o wrapper de prosa .inema-prose (prefs de leitura),
      - os componentes NOVOS da camada de aprendizagem.
@@ -70,7 +70,7 @@ html {
   --c-teal-h:    173; --c-teal-s:    80%; --c-teal-l:    40%; /* T5 */
   --c-rose-h:    350; --c-rose-s:    89%; --c-rose-l:    60%; /* T6 */
 
-  /* Estados semânticos de anotação/feedback (independem de tema) */
+  /* Estados semânticos de anotaçêo/feedback (independem de tema) */
   --c-doubt-h: 25;  --c-doubt-s: 95%; --c-doubt-l: 53%;  /* dúvida (laranja) */
   --c-ok-h:    142; --c-ok-s:    71%; --c-ok-l:    45%;  /* acerto */
   --c-warn-h:  0;   --c-warn-s:   72%; --c-warn-l:   51%; /* erro/alerta */
@@ -87,7 +87,7 @@ html {
   --inema-ease: cubic-bezier(0.4, 0, 0.2, 1);
 
   /* === ACENTO POR TRILHA (data-accent) — default emerald (T1) ===
-     O acento alimenta os componentes NOVOS e o <style> à mão (nível 3 --accent).
+     O acento alimenta os componentes NOVOS e o <style> à mêo (nível 3 --accent).
      Em claro/sépia, o degrau de TEXTO cai p/ -700/-800 (ver §6). */
   --accent-h: var(--c-emerald-h);
   --accent-s: var(--c-emerald-s);
@@ -119,11 +119,11 @@ html {
   --surface:   #f8fafc;   /* slate-50 */
   --surface-2: #f3f4f6;   /* gray-100 */
   --text:      #1a1a1a;   /* ~16:1 sobre #fff (AAA) */
-  --text-muted:#6e6e6e;   /* ~4.9:1 sobre #fff (piso AA, mira AAA p/ não-corpo) */
+  --text-muted:#6e6e6e;   /* ~4.9:1 sobre #fff (piso AA, mira AAA p/ nêo-corpo) */
   --border:    #e2e8f0;   /* slate-200 */
   --border-strong: #cbd5e1;
 
-  /* PRIMARY (âmbar) — em claro NÃO serve de TEXTO (1.53:1). Só fill/borda. */
+  /* PRIMARY (âmbar) — em claro NêO serve de TEXTO (1.53:1). Só fill/borda. */
   --primary:      hsl(var(--c-amber-h) var(--c-amber-s) var(--c-amber-l));
   --primary-ink:  #92400e;  /* amber-800: âmbar quando precisa virar TEXTO em claro */
   --on-primary:   #1a1a1a;  /* texto sobre fill âmbar (escuro, alto contraste) */
@@ -161,7 +161,7 @@ html {
 :root,
 .dark {
   --accent: hsl(var(--accent-h) var(--accent-s) var(--accent-l));
-  /* versão TEXTO do acento (respeita o offset de cada tema) */
+  /* versêo TEXTO do acento (respeita o offset de cada tema) */
   --accent-text: hsl(var(--accent-h) var(--accent-s) var(--accent-l-text));
 }
 
@@ -216,9 +216,9 @@ html {
 }
 
 /* contraste herda claro/escuro do .dark, mas o caminho principal é dark.
-   Se aplicado SEM .dark, ainda força os valores acima (são absolutos). */
+   Se aplicado SEM .dark, ainda força os valores acima (sêo absolutos). */
 
-/* ---- FOCO — NÃO mexe na cor; só densidade/medida/visibilidade ----
+/* ---- FOCO — NêO mexe na cor; só densidade/medida/visibilidade ----
    Reduz a medida da prosa, aumenta entrelinha e esconde cromo lateral.
    Herda as cores do tema ativo (claro/escuro/sépia/contraste). */
 [data-theme="foco"] {
@@ -250,7 +250,7 @@ html {
    3b. BRIDGE DE CHROME — temas data-theme pintam a PÁGINA inteira
    -----------------------------------------------------------------------------
    As classes utilitárias v1 (bg-dark-*, text-neutral-*, border-dark-*) e o
-   override binário `html:not(.dark)` controlam o chrome (body/nav/cards) e NÃO
+   override binário `html:not(.dark)` controlam o chrome (body/nav/cards) e NêO
    consomem as variáveis de tema. Sem isto, "sépia" e "contraste" só recolorem a
    prosa e ficam idênticos a claro/escuro. Aqui mapeamos as classes-chave do
    chrome para os tokens semânticos, para que a TROCA DE TEMA transforme a
@@ -291,7 +291,7 @@ html[data-theme="contraste"] .border-dark-700 { border-color: var(--border) !imp
 
 /* =============================================================================
    4. .inema-prose — PREFERÊNCIAS DE LEITURA (unidades relativas; spec §3.5/3.6)
-   --measure clampa SÓ a prosa. Code/tabelas/grids NÃO recebem --measure.
+   --measure clampa SÓ a prosa. Code/tabelas/grids NêO recebem --measure.
    ============================================================================= */
 
 /* fontScale -> :root font-size em % (resto em rem escala junto; NUNCA px no root) */
@@ -350,7 +350,7 @@ html[data-leading="confortavel"] .inema-prose { --lh-body: 1.7; }
 .inema-prose > h2:first-child,
 .inema-prose > h3:first-child { margin-block-start: 0; }
 
-/* CÓDIGO / TABELAS / GRIDS / FIGURAS: NÃO recebem --measure (largura plena) */
+/* CÓDIGO / TABELAS / GRIDS / FIGURAS: NêO recebem --measure (largura plena) */
 .inema-prose pre,
 .inema-prose table,
 .inema-prose figure,
@@ -358,7 +358,7 @@ html[data-leading="confortavel"] .inema-prose { --lh-body: 1.7; }
 .inema-prose [data-inema-fullbleed] {
   max-width: none;
   width: 100%;
-  /* line-height de código fica fixo, não herda o multiplicador de leitura */
+  /* line-height de código fica fixo, nêo herda o multiplicador de leitura */
   line-height: 1.5;
 }
 .inema-prose pre,
@@ -375,8 +375,8 @@ html[data-leading="confortavel"] .inema-prose { --lh-body: 1.7; }
 }
 
 /* =============================================================================
-   5. TRANSIÇÃO DE TEMA (micro-interação contida; spec §3.9)
-   Transição curta SÓ nas cores; nada de scale/translate/bounce.
+   5. TRANSIÇêO DE TEMA (micro-interaçêo contida; spec §3.9)
+   Transiçêo curta SÓ nas cores; nada de scale/translate/bounce.
    ============================================================================= */
 
 body,
@@ -414,7 +414,7 @@ body,
    (Em dark o --accent-l-text já é o próprio --accent-l.) */
 :root:not(.dark)[data-accent],
 [data-theme="sepia"][data-accent] {
-  /* mantém hue/saturação da trilha, baixa a luminância p/ texto legível */
+  /* mantém hue/saturaçêo da trilha, baixa a luminância p/ texto legível */
   --accent-l-text: 30%;
 }
 /* âmbar é o caso mais crítico: em claro/sépia vira -800 (~28% L) */
@@ -484,8 +484,8 @@ html[data-reduced-motion="reduce"] *::after {
 }
 
 /* =============================================================================
-   8. BOTÃO "MARCAR LIDO"  (aria-pressed; estado por ÍCONE + TEXTO + COR)
-   NÃO pode virar justify-center (Erro Crítico #1) -> justify-start.
+   8. BOTêO "MARCAR LIDO"  (aria-pressed; estado por ÍCONE + TEXTO + COR)
+   NêO pode virar justify-center (Erro Crítico #1) -> justify-start.
    ============================================================================= */
 
 [data-inema-read-toggle] {
@@ -509,7 +509,7 @@ html[data-reduced-motion="reduce"] *::after {
   user-select: none;
 }
 [data-inema-read-toggle]:hover {
-  /* hover sutil: só cor de borda + bg levíssimo (anti-padrão: nada de scale) */
+  /* hover sutil: só cor de borda + bg levíssimo (anti-padrêo: nada de scale) */
   border-color: var(--border-strong);
   color: var(--text);
 }
@@ -537,7 +537,7 @@ html[data-reduced-motion="reduce"] *::after {
 [data-inema-read-toggle][aria-pressed="true"] .inema-label-done,
 [data-inema-read-toggle].is-read .inema-label-done { display: inline; }
 
-/* o "preencher" do check (micro-interação contida; cresce e some sob reduce) */
+/* o "preencher" do check (micro-interaçêo contida; cresce e some sob reduce) */
 [data-inema-read-toggle] .inema-ico-done svg path {
   stroke-dasharray: 24;
   stroke-dashoffset: 0;
@@ -552,7 +552,7 @@ html[data-reduced-motion="reduce"] *::after {
 }
 
 /* =============================================================================
-   9. FLAG DE DÚVIDA (botão rápido por tópico)
+   9. FLAG DE DÚVIDA (botêo rápido por tópico)
    ============================================================================= */
 
 [data-inema-doubt-toggle] {
@@ -603,14 +603,14 @@ html[data-reduced-motion="reduce"] *::after {
   color: inherit;            /* mantém legibilidade do texto por baixo */
   cursor: pointer;
 }
-/* nasce com crescimento sutil ao aplicar (animação some sob reduce) */
+/* nasce com crescimento sutil ao aplicar (animaçêo some sob reduce) */
 .inema-hl { animation: inema-hl-grow var(--inema-dur) var(--inema-ease) both; }
 @keyframes inema-hl-grow {
   from { background-size: 0% 100%; }
   to   { background-size: 100% 100%; }
 }
 
-/* tintas — usam alpha sobre o texto p/ não derrubar contraste do glifo */
+/* tintas — usam alpha sobre o texto p/ nêo derrubar contraste do glifo */
 .inema-hl[data-hl="yellow"] { background-color: hsl(48  100% 50% / 0.32); }
 .inema-hl[data-hl="green"]  { background-color: hsl(142 71%  45% / 0.28); }
 .inema-hl[data-hl="blue"]   { background-color: hsl(204 94%  58% / 0.26); }
@@ -625,7 +625,7 @@ html[data-reduced-motion="reduce"] *::after {
 .dark .inema-hl[data-hl="blue"]   { background-color: hsl(204 94%  62% / 0.30); }
 .dark .inema-hl[data-hl="pink"]   { background-color: hsl(330 81%  66% / 0.30); }
 
-/* nota anexa: pequeno indicador depois do span (não vira seta perto de tópico, #2) */
+/* nota anexa: pequeno indicador depois do span (nêo vira seta perto de tópico, #2) */
 .inema-hl[data-has-note="true"]::after {
   content: "";
   display: inline-block;
@@ -639,7 +639,7 @@ html[data-reduced-motion="reduce"] *::after {
 }
 
 /* =============================================================================
-   11. POPOVER DE SELEÇÃO (swatches + ações)
+   11. POPOVER DE SELEÇêO (swatches + ações)
    Posicionado via JS (getBoundingClientRect + scroll). Aqui só o visual.
    ============================================================================= */
 
@@ -682,7 +682,7 @@ html[data-reduced-motion="reduce"] *::after {
 .inema-swatch[data-hl="pink"]   { background: hsl(330 81%  58%); }
 .inema-swatch[data-hl="doubt"]  {
   background: hsl(var(--c-doubt-h) var(--c-doubt-s) var(--c-doubt-l));
-  /* reservado p/ "dúvida": anel distinto p/ leitura não-só-por-cor (1.4.1) */
+  /* reservado p/ "dúvida": anel distinto p/ leitura nêo-só-por-cor (1.4.1) */
   box-shadow: 0 0 0 2px var(--surface-2), 0 0 0 3px hsl(var(--c-doubt-h) var(--c-doubt-s) 40%);
 }
 .inema-swatch[aria-pressed="true"],
@@ -691,7 +691,7 @@ html[data-reduced-motion="reduce"] *::after {
   transform: scale(1.08);
 }
 
-/* separador e botões de ação do popover */
+/* separador e botões de açêo do popover */
 .inema-selpop__sep {
   inline-size: 1px;
   block-size: 1.3rem;
@@ -951,7 +951,7 @@ html[data-reduced-motion="reduce"] *::after {
   transition: inline-size var(--inema-dur-slow) var(--inema-ease);
 }
 
-/* texto "N de M" + % — par sempre visível (não só barra/cor) */
+/* texto "N de M" + % — par sempre visível (nêo só barra/cor) */
 .inema-meter-label {
   font-size: 0.82rem;
   font-weight: 600;
@@ -992,14 +992,14 @@ html[data-reduced-motion="reduce"] *::after {
   color: var(--text);
 }
 
-/* estado 100% — celebração CONTIDA (sem confete/streak) */
+/* estado 100% — celebraçêo CONTIDA (sem confete/streak) */
 [data-inema-meter][data-complete="true"] .inema-bar__fill,
 [data-inema-meter][data-complete="true"].inema-ring {
   background: var(--primary);
 }
 [data-inema-meter][data-complete="true"] .inema-ring__value { color: var(--primary-ink); }
 
-/* toast discreto de conclusão (some sob reduce preservando posição final) */
+/* toast discreto de conclusêo (some sob reduce preservando posiçêo final) */
 .inema-toast {
   position: fixed;
   inset-block-end: 1.25rem;
@@ -1050,7 +1050,7 @@ html[data-reduced-motion="reduce"] *::after {
 }
 [data-inema-toc] a:hover { color: var(--text); background: var(--surface); }
 
-/* item ATIVO do scrollspy — cor + barra lateral + peso (não só cor) */
+/* item ATIVO do scrollspy — cor + barra lateral + peso (nêo só cor) */
 [data-inema-toc] a.is-active,
 [data-inema-toc] a[aria-current="true"] {
   color: var(--accent-text);
@@ -1065,7 +1065,7 @@ html[data-reduced-motion="reduce"] *::after {
   font-weight: 700;
 }
 
-/* "Seção N de M" */
+/* "Seçêo N de M" */
 .inema-toc-progress {
   padding: 0.5rem 0.75rem;
   font-size: 0.78rem;
@@ -1086,7 +1086,7 @@ html[data-reduced-motion="reduce"] *::after {
 
 /* =============================================================================
    15. SELETOR DE APARÊNCIA (<button>-based; absorve o toggle sol/lua)
-   Estado por ÍCONE + TEXTO, não só cor (1.4.1). Persistido em inema.prefs (JS).
+   Estado por ÍCONE + TEXTO, nêo só cor (1.4.1). Persistido em inema.prefs (JS).
    ============================================================================= */
 
 .inema-appearance-trigger {
@@ -1197,7 +1197,7 @@ html[data-reduced-motion="reduce"] *::after {
 }
 
 /* =============================================================================
-   16. CHECAGEM LEVE OPCIONAL (data-inema-check) — feedback NÃO-bloqueante
+   16. CHECAGEM LEVE OPCIONAL (data-inema-check) — feedback NêO-bloqueante
    ============================================================================= */
 
 [data-inema-check] {
@@ -1233,7 +1233,7 @@ html[data-reduced-motion="reduce"] *::after {
   border-color: hsl(var(--c-warn-h) var(--c-warn-s) 45%);
   background: hsl(var(--c-warn-h) var(--c-warn-s) var(--c-warn-l) / 0.10);
 }
-/* feedback explicativo por opção (revelado após escolha) */
+/* feedback explicativo por opçêo (revelado após escolha) */
 .inema-check__feedback {
   margin-block-start: 0.6rem;
   font-size: 0.88rem;
@@ -1243,7 +1243,7 @@ html[data-reduced-motion="reduce"] *::after {
 .dark .inema-check__feedback[data-tone="correct"] { color: hsl(var(--c-ok-h) 60% 60%); }
 
 /* =============================================================================
-   17. "Indo mais fundo (opcional)" — divulgação progressiva (<details>)
+   17. "Indo mais fundo (opcional)" — divulgaçêo progressiva (<details>)
    ============================================================================= */
 
 .inema-prose details {

@@ -1,10 +1,10 @@
 # Workshop Avançado de Engenharia de Software com IA
 
-## Visão geral
+## Visêo geral
 
 Um workshop intensivo de dois dias para profissionais que desejam trabalhar com inteligência artificial no desenvolvimento de software sem perder controle, qualidade, segurança e coerência arquitetural.
 
-A proposta é mostrar como usar agentes de programação, automações e IA generativa dentro de uma engenharia orientada por especificações, testes, arquitetura, governança e critérios objetivos de qualidade.
+A proposta é mostrar como usar agentes de programaçêo, automações e IA generativa dentro de uma engenharia orientada por especificações, testes, arquitetura, governança e critérios objetivos de qualidade.
 
 ---
 
@@ -14,7 +14,7 @@ A proposta é mostrar como usar agentes de programação, automações e IA gene
 
 ### 1. Onde realmente está a IA na engenharia de software
 
-- Evolução da IA no desenvolvimento de software
+- Evoluçêo da IA no desenvolvimento de software
 - Do autocomplete aos agentes autônomos
 - O novo papel do engenheiro de software
 - Por que os fundamentos voltaram a ser essenciais
@@ -24,11 +24,11 @@ A proposta é mostrar como usar agentes de programação, automações e IA gene
 ### 2. Spec-Driven Development
 
 - O que é desenvolvimento orientado por especificações
-- Como transformar intenção em especificação estruturada
-- Definição de escopo e critérios de aceitação
+- Como transformar intençêo em especificaçêo estruturada
+- Definiçêo de escopo e critérios de aceitaçêo
 - Contratos, entradas, saídas e condições de erro
 - Especificações que agentes conseguem entender
-- Relação entre especificações, testes e implementação
+- Relaçêo entre especificações, testes e implementaçêo
 
 ### 3. Harness Engineering
 
@@ -41,69 +41,69 @@ A proposta é mostrar como usar agentes de programação, automações e IA gene
 
 ### 4. Loop Engineering
 
-- Como criar ciclos de execução e verificação
+- Como criar ciclos de execuçêo e verificaçêo
 - Observar, planejar, executar, testar e corrigir
 - Condições de parada
 - Limite de tentativas e custos
 - Tratamento de falhas
 - Rollback e fallback
-- Aprovação humana em ações críticas
+- Aprovaçêo humana em ações críticas
 
 ### 5. Automações no desenvolvimento
 
 - Eventos que acionam agentes
-- Integração com issues, repositórios e pipelines
-- Correção de falhas de CI
-- Atualização de dependências
+- Integraçêo com issues, repositórios e pipelines
+- Correçêo de falhas de CI
+- Atualizaçêo de dependências
 - Análise de incidentes
-- Geração e atualização de documentação
-- Quando automatizar e quando exigir aprovação
+- Geraçêo e atualizaçêo de documentaçêo
+- Quando automatizar e quando exigir aprovaçêo
 
 ### 6. Code Review com IA
 
-- Revisão de código assistida por agentes
+- Revisêo de código assistida por agentes
 - Análise de diffs e contexto do repositório
 - Agente implementador e agente revisor
-- Revisão arquitetural
-- Segurança, desempenho e manutenção
-- Limites da revisão automática
-- Papel da revisão humana
+- Revisêo arquitetural
+- Segurança, desempenho e manutençêo
+- Limites da revisêo automática
+- Papel da revisêo humana
 
 ### 7. Quality Gates
 
 - Build
 - Lint
 - Testes unitários
-- Testes de integração
+- Testes de integraçêo
 - Testes de contrato
 - Cobertura mínima
 - Análise estática
 - Segurança
 - Compatibilidade
 - Desempenho
-- Aprovação de revisão
+- Aprovaçêo de revisêo
 - Critérios para liberar uma mudança
 
 ---
 
 ## Dia 2 — Arquitetura na era da IA
 
-### 1. Modernização segura de sistemas legados
+### 1. Modernizaçêo segura de sistemas legados
 
 - Mapeamento de dependências
-- Identificação de regras de negócio
-- Testes de caracterização
+- Identificaçêo de regras de negócio
+- Testes de caracterizaçêo
 - Descoberta de integrações ocultas
 - Isolamento de fronteiras
-- Migração gradual
-- Comparação entre comportamento antigo e novo
-- Redução de risco com apoio de agentes
+- Migraçêo gradual
+- Comparaçêo entre comportamento antigo e novo
+- Reduçêo de risco com apoio de agentes
 
 ### 2. Arquitetura legível para agentes
 
 - Estrutura previsível de repositórios
 - Limites claros entre módulos
-- Documentação próxima ao código
+- Documentaçêo próxima ao código
 - Contratos explícitos
 - Padrões de nomes
 - Comandos padronizados
@@ -118,33 +118,33 @@ A proposta é mostrar como usar agentes de programação, automações e IA gene
 - Reduzir novas dependências
 - Justificar novos componentes
 - Limitar arquivos alterados
-- Comparar solução simples e solução extensível
+- Comparar soluçêo simples e soluçêo extensível
 - Controlar complexidade gerada pela IA
 - Remover código desnecessário
 
 ### 4. Dívida técnica gerada por IA
 
 - Código em grande volume
-- Duplicação semântica
+- Duplicaçêo semântica
 - Inconsistência entre módulos
 - Testes superficiais
-- Documentação desatualizada
+- Documentaçêo desatualizada
 - Dependências desnecessárias
 - Falhas arquiteturais
 - Problemas de segurança
-- Código que passa nos testes, mas viola a intenção
+- Código que passa nos testes, mas viola a intençêo
 
 ### 5. Playbooks e processos reutilizáveis
 
-- Criação de funcionalidades
-- Correção de bugs
-- Modernização de legado
-- Revisão de pull requests
-- Refatoração controlada
-- Atualização de dependências
-- Migração de banco
+- Criaçêo de funcionalidades
+- Correçêo de bugs
+- Modernizaçêo de legado
+- Revisêo de pull requests
+- Refatoraçêo controlada
+- Atualizaçêo de dependências
+- Migraçêo de banco
 - Análise de incidentes
-- Validação antes do deploy
+- Validaçêo antes do deploy
 
 ### 6. Skills e Rules
 
@@ -162,13 +162,13 @@ A proposta é mostrar como usar agentes de programação, automações e IA gene
 ### 7. Projeto final
 
 - Estruturar um fluxo completo de desenvolvimento com IA
-- Criar especificação
+- Criar especificaçêo
 - Configurar o harness
 - Definir o loop
-- Executar a implementação
+- Executar a implementaçêo
 - Aplicar quality gates
-- Realizar revisão independente
-- Preparar a entrega para produção
+- Realizar revisêo independente
+- Preparar a entrega para produçêo
 
 ---
 
@@ -183,9 +183,9 @@ Ao final do workshop, o participante terá acesso a:
 - Skills reutilizáveis
 - Checklists de quality gates
 - Fluxos de code review
-- Modelo de modernização de legado
+- Modelo de modernizaçêo de legado
 - Estrutura de harness
-- Modelo de loop de execução
+- Modelo de loop de execuçêo
 - Checklist de governança
 - Exemplos de automações
 
@@ -198,9 +198,9 @@ Ao final dos dois dias, o participante deverá ser capaz de:
 - Trabalhar de forma AI First sem perder o controle
 - Transformar requisitos em especificações executáveis
 - Criar ambientes seguros para agentes
-- Construir loops de execução e verificação
+- Construir loops de execuçêo e verificaçêo
 - Automatizar tarefas de engenharia
-- Aplicar revisão de código com IA
+- Aplicar revisêo de código com IA
 - Criar quality gates
 - Modernizar sistemas legados com menor risco
 - Estruturar sistemas que agentes entendam

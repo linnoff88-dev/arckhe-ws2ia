@@ -2,21 +2,21 @@
 
 ## Conteúdo completo
 
-A inteligência artificial já não está limitada à geração de pequenos trechos de código. As ferramentas atuais conseguem analisar repositórios, criar arquivos, executar comandos, modificar sistemas, rodar testes, investigar falhas e revisar alterações.
+A inteligência artificial já nêo está limitada à geraçêo de pequenos trechos de código. As ferramentas atuais conseguem analisar repositórios, criar arquivos, executar comandos, modificar sistemas, rodar testes, investigar falhas e revisar alterações.
 
-Essa evolução muda profundamente a engenharia de software.
+Essa evoluçêo muda profundamente a engenharia de software.
 
-O desafio principal já não é fazer a IA escrever código. O desafio é fazer a IA produzir mudanças corretas, seguras, verificáveis e coerentes com a arquitetura do sistema.
+O desafio principal já nêo é fazer a IA escrever código. O desafio é fazer a IA produzir mudanças corretas, seguras, verificáveis e coerentes com a arquitetura do sistema.
 
-O novo modelo de desenvolvimento exige que os profissionais saibam estruturar especificações, ambientes, regras, testes, loops de execução, mecanismos de revisão e critérios de qualidade.
+O novo modelo de desenvolvimento exige que os profissionais saibam estruturar especificações, ambientes, regras, testes, loops de execuçêo, mecanismos de revisêo e critérios de qualidade.
 
-A IA aumenta a velocidade de produção. Sem controle, ela também pode aumentar a velocidade dos erros, da dívida técnica e da complexidade.
+A IA aumenta a velocidade de produçêo. Sem controle, ela também pode aumentar a velocidade dos erros, da dívida técnica e da complexidade.
 
 ---
 
 # Parte 1 — Onde realmente está a IA na engenharia de software
 
-A evolução do uso de IA no desenvolvimento pode ser observada em três grandes fases.
+A evoluçêo do uso de IA no desenvolvimento pode ser observada em três grandes fases.
 
 ## Fase 1 — Autocomplete
 
@@ -28,11 +28,11 @@ Nesse estágio, o humano continua responsável por quase todas as decisões.
 
 A IA responde perguntas, explica código, cria funções, gera arquivos e ajuda a resolver problemas.
 
-Ela já participa ativamente da implementação, mas ainda depende de instruções frequentes.
+Ela já participa ativamente da implementaçêo, mas ainda depende de instruções frequentes.
 
 ## Fase 3 — Agente
 
-O agente recebe uma tarefa, explora o repositório, lê documentação, modifica arquivos, executa comandos, roda testes, analisa erros e tenta corrigir a própria implementação.
+O agente recebe uma tarefa, explora o repositório, lê documentaçêo, modifica arquivos, executa comandos, roda testes, analisa erros e tenta corrigir a própria implementaçêo.
 
 Essa fase exige um novo tipo de engenharia.
 
@@ -40,27 +40,27 @@ Um agente precisa de:
 
 - acesso controlado ao repositório;
 - contexto;
-- documentação;
+- documentaçêo;
 - ferramentas;
-- ambiente de execução;
+- ambiente de execuçêo;
 - memória;
 - estado;
 - permissões;
 - regras;
 - testes;
-- critérios de conclusão;
-- mecanismos de interrupção;
+- critérios de conclusêo;
+- mecanismos de interrupçêo;
 - registros das ações realizadas.
 
-O agente não deve ser tratado apenas como um chatbot. Ele deve ser tratado como um componente operacional dentro de um sistema controlado.
+O agente nêo deve ser tratado apenas como um chatbot. Ele deve ser tratado como um componente operacional dentro de um sistema controlado.
 
 ---
 
 # Parte 2 — Por que os fundamentos voltaram a importar
 
-A IA consegue gerar código rapidamente, mas não substitui o conhecimento de engenharia.
+A IA consegue gerar código rapidamente, mas nêo substitui o conhecimento de engenharia.
 
-Sem fundamentos, o profissional pode não perceber:
+Sem fundamentos, o profissional pode nêo perceber:
 
 - problemas de concorrência;
 - falhas de segurança;
@@ -71,13 +71,13 @@ Sem fundamentos, o profissional pode não perceber:
 - incompatibilidades;
 - falhas de arquitetura;
 - impactos em outros sistemas;
-- comportamentos não documentados.
+- comportamentos nêo documentados.
 
 Quanto mais código a IA produz, mais importante se torna a capacidade de avaliar o resultado.
 
 O profissional que domina arquitetura, testes, sistemas operacionais, redes, APIs, segurança, bancos de dados e infraestrutura consegue utilizar a IA com muito mais eficiência.
 
-O conhecimento durável não está em decorar uma ferramenta. Está em compreender como sistemas funcionam.
+O conhecimento durável nêo está em decorar uma ferramenta. Está em compreender como sistemas funcionam.
 
 ---
 
@@ -88,17 +88,17 @@ Spec-Driven Development significa desenvolvimento orientado por especificações
 O fluxo básico é:
 
 ```text
-Intenção
-→ especificação estruturada
+Intençêo
+→ especificaçêo estruturada
 → plano
-→ implementação
+→ implementaçêo
 → testes
-→ verificação
+→ verificaçêo
 ```
 
-Uma especificação não deve ser apenas um texto genérico. Ela precisa reduzir ambiguidades e transformar a intenção em critérios verificáveis.
+Uma especificaçêo nêo deve ser apenas um texto genérico. Ela precisa reduzir ambiguidades e transformar a intençêo em critérios verificáveis.
 
-## Elementos de uma boa especificação
+## Elementos de uma boa especificaçêo
 
 ### Problema
 
@@ -114,7 +114,7 @@ O que faz parte da tarefa?
 
 ### Fora do escopo
 
-O que não deve ser alterado?
+O que nêo deve ser alterado?
 
 ### Entradas
 
@@ -136,7 +136,7 @@ O que deve acontecer quando algo falhar?
 
 Quais tecnologias, padrões, limites e regras devem ser respeitados?
 
-### Critérios de aceitação
+### Critérios de aceitaçêo
 
 Como será possível verificar que a tarefa foi concluída corretamente?
 
@@ -144,11 +144,11 @@ Como será possível verificar que a tarefa foi concluída corretamente?
 
 Quais testes precisam ser criados ou executados?
 
-### Definição de pronto
+### Definiçêo de pronto
 
 Quais condições precisam ser atendidas para considerar o trabalho concluído?
 
-## Exemplo de especificação ruim
+## Exemplo de especificaçêo ruim
 
 ```text
 Crie um sistema de pagamentos.
@@ -156,25 +156,25 @@ Crie um sistema de pagamentos.
 
 Esse pedido deixa muitas decisões abertas.
 
-## Exemplo de especificação mais completa
+## Exemplo de especificaçêo mais completa
 
 ```text
 Criar um serviço de pagamentos que:
 
-- aceite PIX e cartão;
+- aceite PIX e cartêo;
 - impeça duplicidade por chave de idempotência;
-- registre todos os estados da transação;
+- registre todos os estados da transaçêo;
 - processe webhooks;
 - realize retentativas;
 - gere logs estruturados;
 - preserve compatibilidade com a API atual;
-- não armazene dados sensíveis de cartão;
-- inclua testes unitários e de integração;
+- nêo armazene dados sensíveis de cartêo;
+- inclua testes unitários e de integraçêo;
 - tenha rollback para migrações;
 - bloqueie o merge se os testes falharem.
 ```
 
-Quanto melhor a especificação, menor a chance de o agente tomar decisões incompatíveis com o sistema.
+Quanto melhor a especificaçêo, menor a chance de o agente tomar decisões incompatíveis com o sistema.
 
 ---
 
@@ -192,9 +192,9 @@ O harness define:
 - quais regras deve seguir;
 - como o contexto é selecionado;
 - como o estado é preservado;
-- como os resultados são verificados;
-- quando a execução deve parar;
-- quais ações exigem aprovação.
+- como os resultados sêo verificados;
+- quando a execuçêo deve parar;
+- quais ações exigem aprovaçêo.
 
 ## Componentes de um harness
 
@@ -212,11 +212,11 @@ Terminal, editor, busca, testes, banco de dados, APIs e outros recursos.
 
 ### Permissões
 
-Definição do que pode ser lido, alterado, executado ou publicado.
+Definiçêo do que pode ser lido, alterado, executado ou publicado.
 
 ### Sandbox
 
-Ambiente isolado para execução segura.
+Ambiente isolado para execuçêo segura.
 
 ### Memória
 
@@ -238,32 +238,32 @@ Testes e validações que avaliam a qualidade do resultado.
 
 Tempo, custo, número de tentativas, arquivos modificados e ações permitidas.
 
-### Aprovação humana
+### Aprovaçêo humana
 
-Intervenção obrigatória em ações críticas.
+Intervençêo obrigatória em ações críticas.
 
 ## Fluxo de um harness
 
 ```text
 Pedido
-→ leitura da especificação
-→ seleção de contexto
-→ criação do plano
-→ execução em ambiente isolado
+→ leitura da especificaçêo
+→ seleçêo de contexto
+→ criaçêo do plano
+→ execuçêo em ambiente isolado
 → testes
-→ revisão
+→ revisêo
 → quality gates
-→ aprovação
+→ aprovaçêo
 → entrega
 ```
 
-O diferencial não está somente no prompt. Está no sistema criado ao redor do agente.
+O diferencial nêo está somente no prompt. Está no sistema criado ao redor do agente.
 
 ---
 
 # Parte 5 — Loop Engineering
 
-Loop Engineering é o desenho de ciclos de execução e correção.
+Loop Engineering é o desenho de ciclos de execuçêo e correçêo.
 
 Um agente normalmente trabalha em um ciclo:
 
@@ -288,13 +288,13 @@ O agente precisa saber o que deve alcançar.
 
 O sistema deve registrar o que já foi feito.
 
-### Condição de parada
+### Condiçêo de parada
 
 O loop precisa saber quando encerrar.
 
 ### Limite de tentativas
 
-Evita que o agente fique repetindo a mesma ação.
+Evita que o agente fique repetindo a mesma açêo.
 
 ### Limite de custo
 
@@ -310,26 +310,26 @@ Permite voltar ao estado anterior.
 
 ### Fallback
 
-Define uma alternativa quando o caminho principal não funciona.
+Define uma alternativa quando o caminho principal nêo funciona.
 
-### Aprovação humana
+### Aprovaçêo humana
 
 Interrompe o loop antes de ações críticas.
 
-## Exemplo de loop de correção
+## Exemplo de loop de correçêo
 
 ```text
 Ler a issue
 → reproduzir o erro
 → localizar a causa
 → criar um teste que falha
-→ implementar a menor correção
+→ implementar a menor correçêo
 → executar os testes
 → revisar o diff
 → aprovar ou corrigir novamente
 ```
 
-Loop Engineering não significa simplesmente mandar a IA continuar até funcionar.
+Loop Engineering nêo significa simplesmente mandar a IA continuar até funcionar.
 
 Significa criar uma sequência controlada, mensurável e verificável.
 
@@ -342,35 +342,35 @@ As automações conectam os agentes aos acontecimentos reais do processo de enge
 ## Exemplos
 
 - uma issue aprovada aciona um agente;
-- uma falha de CI inicia uma investigação;
-- uma dependência vulnerável gera uma proposta de atualização;
-- um pull request aciona revisão automática;
+- uma falha de CI inicia uma investigaçêo;
+- uma dependência vulnerável gera uma proposta de atualizaçêo;
+- um pull request aciona revisêo automática;
 - uma queda de cobertura bloqueia o merge;
-- uma alteração de API atualiza documentação;
+- uma alteraçêo de API atualiza documentaçêo;
 - um incidente gera diagnóstico inicial;
-- um erro em produção inicia um processo de reprodução.
+- um erro em produçêo inicia um processo de reproduçêo.
 
 ## Fluxo básico
 
 ```text
 Evento
-→ classificação
-→ seleção do agente
-→ execução
-→ validação
-→ decisão
+→ classificaçêo
+→ seleçêo do agente
+→ execuçêo
+→ validaçêo
+→ decisêo
 → entrega
 ```
 
 Nem toda tarefa deve ser totalmente autônoma.
 
-Mudanças em produção, banco de dados, infraestrutura, permissões e segurança precisam de controles adicionais.
+Mudanças em produçêo, banco de dados, infraestrutura, permissões e segurança precisam de controles adicionais.
 
 ---
 
 # Parte 7 — Code Review com IA
 
-A revisão de código com IA pode analisar mais do que apenas o diff.
+A revisêo de código com IA pode analisar mais do que apenas o diff.
 
 Um agente revisor pode:
 
@@ -393,12 +393,12 @@ Agente implementador
 → agente revisor independente
 → análise de segurança
 → quality gates
-→ revisão humana
+→ revisêo humana
 ```
 
-O agente que revisa não deve depender totalmente das conclusões do agente que implementou.
+O agente que revisa nêo deve depender totalmente das conclusões do agente que implementou.
 
-A separação reduz o risco de ambos repetirem a mesma suposição incorreta.
+A separaçêo reduz o risco de ambos repetirem a mesma suposiçêo incorreta.
 
 ## Pontos que o code review deve avaliar
 
@@ -412,20 +412,20 @@ A separação reduz o risco de ambos repetirem a mesma suposição incorreta.
 - consistência arquitetural;
 - tratamento de erros;
 - impacto operacional;
-- manutenção futura.
+- manutençêo futura.
 
 ---
 
 # Parte 8 — Quality Gates
 
-Quality Gates são condições obrigatórias antes de uma mudança avançar.
+Quality Gates sêo condições obrigatórias antes de uma mudança avançar.
 
 ## Exemplos
 
 - build concluído;
 - lint aprovado;
 - testes unitários aprovados;
-- testes de integração aprovados;
+- testes de integraçêo aprovados;
 - testes de contrato aprovados;
 - cobertura mínima alcançada;
 - nenhuma vulnerabilidade crítica;
@@ -433,8 +433,8 @@ Quality Gates são condições obrigatórias antes de uma mudança avançar.
 - contratos preservados;
 - migrações reversíveis;
 - desempenho dentro do limite;
-- revisão concluída;
-- aprovação humana.
+- revisêo concluída;
+- aprovaçêo humana.
 
 ## Princípio fundamental
 
@@ -451,25 +451,25 @@ Build
 → cobertura
 → análise estática
 → segurança
-→ revisão
-→ aprovação
+→ revisêo
+→ aprovaçêo
 → deploy
 ```
 
-O código só avança quando todos os gates obrigatórios são atendidos.
+O código só avança quando todos os gates obrigatórios sêo atendidos.
 
 ---
 
-# Parte 9 — Modernização segura de sistemas legados
+# Parte 9 — Modernizaçêo segura de sistemas legados
 
-A IA pode ajudar muito na modernização de sistemas antigos.
+A IA pode ajudar muito na modernizaçêo de sistemas antigos.
 
 Ela pode:
 
 - mapear dependências;
 - explicar código;
 - identificar regras de negócio;
-- gerar testes de caracterização;
+- gerar testes de caracterizaçêo;
 - documentar interfaces;
 - encontrar código morto;
 - criar adaptadores;
@@ -481,7 +481,7 @@ Mas reescrever um sistema inteiro de uma vez é arriscado.
 
 ## Riscos do legado
 
-- regras não documentadas;
+- regras nêo documentadas;
 - integrações ocultas;
 - comportamentos usados por outros sistemas;
 - dependências antigas;
@@ -495,15 +495,15 @@ Mas reescrever um sistema inteiro de uma vez é arriscado.
 ```text
 Inventário
 → mapa de dependências
-→ testes de caracterização
-→ identificação de fronteiras
-→ alteração pequena
-→ execução paralela
-→ comparação
-→ migração gradual
+→ testes de caracterizaçêo
+→ identificaçêo de fronteiras
+→ alteraçêo pequena
+→ execuçêo paralela
+→ comparaçêo
+→ migraçêo gradual
 ```
 
-A IA deve reduzir o risco, não ampliar o risco.
+A IA deve reduzir o risco, nêo ampliar o risco.
 
 ---
 
@@ -517,7 +517,7 @@ Isso exige:
 - módulos bem definidos;
 - contratos explícitos;
 - nomes consistentes;
-- documentação próxima ao código;
+- documentaçêo próxima ao código;
 - testes rápidos;
 - comandos padronizados;
 - exemplos;
@@ -554,22 +554,22 @@ README.md
 
 O arquivo pode conter:
 
-- visão geral do sistema;
+- visêo geral do sistema;
 - comandos principais;
 - regras do projeto;
-- localização da documentação;
+- localizaçêo da documentaçêo;
 - limitações;
 - critérios de qualidade;
 - ações proibidas;
 - referências para skills e playbooks.
 
-Ele não deve concentrar todo o conhecimento do projeto. Deve funcionar como um mapa.
+Ele nêo deve concentrar todo o conhecimento do projeto. Deve funcionar como um mapa.
 
 ---
 
 # Parte 11 — Como evitar overengineering
 
-A IA tende a produzir soluções aparentemente completas, mesmo quando uma solução menor seria suficiente.
+A IA tende a produzir soluções aparentemente completas, mesmo quando uma soluçêo menor seria suficiente.
 
 Ela pode criar:
 
@@ -588,18 +588,18 @@ Ela pode criar:
 - implementar a menor mudança possível;
 - preservar a estrutura existente;
 - justificar novos componentes;
-- proibir dependências sem aprovação;
+- proibir dependências sem aprovaçêo;
 - limitar o número de arquivos alterados;
-- comparar solução simples e solução extensível;
-- remover código não utilizado;
-- avaliar custo de manutenção;
+- comparar soluçêo simples e soluçêo extensível;
+- remover código nêo utilizado;
+- avaliar custo de manutençêo;
 - evitar refatorações fora do escopo.
 
 ## Regra prática
 
 ```text
-Implemente a menor alteração que satisfaça os critérios de aceitação.
-Não crie novas abstrações, dependências ou camadas sem necessidade comprovada.
+Implemente a menor alteraçêo que satisfaça os critérios de aceitaçêo.
+Nêo crie novas abstrações, dependências ou camadas sem necessidade comprovada.
 ```
 
 ---
@@ -612,41 +612,41 @@ Mesmo que a taxa de erro por linha permaneça igual, o número total de problema
 
 ## Formas de dívida técnica
 
-- duplicação semântica;
+- duplicaçêo semântica;
 - inconsistência entre módulos;
 - dependências desnecessárias;
 - testes limitados ao caminho feliz;
-- documentação desatualizada;
+- documentaçêo desatualizada;
 - código fora dos padrões;
 - tratamento incompleto de erros;
 - violações arquiteturais;
 - complexidade excessiva;
 - problemas de segurança;
-- soluções que passam nos testes, mas violam a intenção.
+- soluções que passam nos testes, mas violam a intençêo.
 
 ## Controle da dívida
 
-- revisão contínua;
+- revisêo contínua;
 - análise de arquitetura;
 - métricas de complexidade;
 - limites de tamanho de mudança;
 - refatorações pequenas;
-- testes de regressão;
-- documentação versionada;
-- remoção de código morto;
+- testes de regressêo;
+- documentaçêo versionada;
+- remoçêo de código morto;
 - quality gates;
-- revisão independente.
+- revisêo independente.
 
 ---
 
 # Parte 13 — Playbooks
 
-Playbooks são procedimentos reutilizáveis para tarefas recorrentes.
+Playbooks sêo procedimentos reutilizáveis para tarefas recorrentes.
 
 ## Playbook de nova funcionalidade
 
 ```text
-Ler a especificação
+Ler a especificaçêo
 → confirmar escopo
 → mapear impacto
 → criar plano
@@ -658,24 +658,24 @@ Ler a especificação
 → preparar pull request
 ```
 
-## Playbook de correção de bug
+## Playbook de correçêo de bug
 
 ```text
 Reproduzir o erro
 → registrar evidência
 → identificar causa
 → criar teste que falha
-→ implementar correção
-→ executar regressão
+→ implementar correçêo
+→ executar regressêo
 → revisar impacto
 → documentar
 ```
 
-## Playbook de modernização
+## Playbook de modernizaçêo
 
 ```text
 Mapear dependências
-→ criar testes de caracterização
+→ criar testes de caracterizaçêo
 → definir fronteira
 → criar adaptador
 → migrar pequeno módulo
@@ -691,9 +691,9 @@ Coletar logs
 → classificar gravidade
 → preservar evidências
 → identificar causa provável
-→ criar mitigação
+→ criar mitigaçêo
 → validar
-→ aplicar correção
+→ aplicar correçêo
 → registrar aprendizado
 ```
 
@@ -701,19 +701,19 @@ Coletar logs
 
 # Parte 14 — Skills
 
-Skills são capacidades reutilizáveis que orientam o agente em tarefas específicas.
+Skills sêo capacidades reutilizáveis que orientam o agente em tarefas específicas.
 
 ## Exemplos de skills
 
 - analisar repositório;
-- gerar especificação;
-- criar plano de implementação;
+- gerar especificaçêo;
+- criar plano de implementaçêo;
 - reproduzir bug;
 - gerar testes;
 - implementar mudança mínima;
 - revisar arquitetura;
 - revisar segurança;
-- atualizar documentação;
+- atualizar documentaçêo;
 - preparar pull request;
 - modernizar módulo legado;
 - analisar incidente;
@@ -729,7 +729,7 @@ Uma skill pode definir:
 - entradas;
 - ferramentas;
 - etapas;
-- critérios de aceitação;
+- critérios de aceitaçêo;
 - ações proibidas;
 - tratamento de falhas;
 - formato da saída;
@@ -739,22 +739,22 @@ Uma skill pode definir:
 
 # Parte 15 — Rules
 
-Rules são regras permanentes ou condicionais que limitam o comportamento dos agentes.
+Rules sêo regras permanentes ou condicionais que limitam o comportamento dos agentes.
 
 ## Exemplos
 
 - nunca alterar testes para esconder uma falha;
 - nunca inserir segredos no repositório;
-- não adicionar dependência sem justificar;
+- nêo adicionar dependência sem justificar;
 - preservar APIs públicas;
-- não executar deploy sem aprovação;
-- não modificar banco de produção diretamente;
-- não remover logs de segurança;
+- nêo executar deploy sem aprovaçêo;
+- nêo modificar banco de produçêo diretamente;
+- nêo remover logs de segurança;
 - produzir evidência dos testes;
 - limitar o número de tentativas;
 - parar quando o custo ultrapassar o limite;
-- pedir aprovação antes de ações destrutivas;
-- não realizar refatoração fora do escopo.
+- pedir aprovaçêo antes de ações destrutivas;
+- nêo realizar refatoraçêo fora do escopo.
 
 Rules reduzem decisões arbitrárias.
 
@@ -775,9 +775,9 @@ Governança é o conjunto de controles que define como a IA pode operar dentro d
 - ambientes permitidos;
 - dados acessíveis;
 - ações proibidas;
-- aprovação humana;
+- aprovaçêo humana;
 - política de segurança;
-- retenção de informações;
+- retençêo de informações;
 - tratamento de incidentes.
 
 ## Níveis de autonomia
@@ -786,11 +786,11 @@ Governança é o conjunto de controles que define como a IA pode operar dentro d
 
 A IA apenas sugere.
 
-### Nível 2 — Execução supervisionada
+### Nível 2 — Execuçêo supervisionada
 
-A IA executa, mas cada ação importante precisa ser aprovada.
+A IA executa, mas cada açêo importante precisa ser aprovada.
 
-### Nível 3 — Execução controlada
+### Nível 3 — Execuçêo controlada
 
 A IA executa tarefas delimitadas e passa por quality gates.
 
@@ -800,7 +800,7 @@ A IA executa fluxos completos dentro de regras e ambientes específicos.
 
 ### Nível 5 — Autonomia crítica
 
-Não deve ser adotada sem controles extremamente rigorosos.
+Nêo deve ser adotada sem controles extremamente rigorosos.
 
 ---
 
@@ -809,7 +809,7 @@ Não deve ser adotada sem controles extremamente rigorosos.
 ```text
 1. Receber a demanda
 2. Classificar a tarefa
-3. Criar ou revisar a especificação
+3. Criar ou revisar a especificaçêo
 4. Mapear o impacto
 5. Selecionar a skill
 6. Configurar o contexto
@@ -817,8 +817,8 @@ Não deve ser adotada sem controles extremamente rigorosos.
 8. Executar em ambiente isolado
 9. Rodar testes
 10. Aplicar quality gates
-11. Realizar revisão independente
-12. Solicitar aprovação humana
+11. Realizar revisêo independente
+12. Solicitar aprovaçêo humana
 13. Entregar
 14. Monitorar
 15. Registrar aprendizado
@@ -836,9 +836,9 @@ O projeto final pode reunir todos os conceitos.
 
 Selecionar uma funcionalidade, bug ou módulo legado.
 
-## Etapa 2 — Especificação
+## Etapa 2 — Especificaçêo
 
-Criar uma especificação completa.
+Criar uma especificaçêo completa.
 
 ## Etapa 3 — Harness
 
@@ -846,19 +846,19 @@ Definir ferramentas, contexto, permissões e limites.
 
 ## Etapa 4 — Loop
 
-Criar o ciclo de execução, teste e correção.
+Criar o ciclo de execuçêo, teste e correçêo.
 
-## Etapa 5 — Implementação
+## Etapa 5 — Implementaçêo
 
 Executar a menor mudança possível.
 
 ## Etapa 6 — Quality Gates
 
-Aplicar build, lint, testes, segurança e revisão.
+Aplicar build, lint, testes, segurança e revisêo.
 
-## Etapa 7 — Revisão independente
+## Etapa 7 — Revisêo independente
 
-Utilizar outro agente ou processo para revisar a alteração.
+Utilizar outro agente ou processo para revisar a alteraçêo.
 
 ## Etapa 8 — Entrega
 
@@ -866,13 +866,13 @@ Preparar o pull request e as evidências.
 
 ---
 
-# Conclusão
+# Conclusêo
 
-A engenharia de software com IA não elimina a engenharia tradicional.
+A engenharia de software com IA nêo elimina a engenharia tradicional.
 
 Ela aumenta a importância dos fundamentos.
 
-Os modelos e ferramentas mudarão rapidamente. O conhecimento durável está em saber:
+Os modelos e ferramentas mudarêo rapidamente. O conhecimento durável está em saber:
 
 - especificar;
 - estruturar contexto;
@@ -887,6 +887,6 @@ Os modelos e ferramentas mudarão rapidamente. O conhecimento durável está em 
 - aplicar governança;
 - transformar regras em verificações executáveis.
 
-O profissional mais valioso não será apenas aquele que sabe pedir código à IA.
+O profissional mais valioso nêo será apenas aquele que sabe pedir código à IA.
 
 Será aquele que sabe construir o sistema no qual a IA pode trabalhar com segurança, qualidade, velocidade e controle.
