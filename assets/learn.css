@@ -1,5 +1,5 @@
 /* =============================================================================
-   INEMA · formato-curso-v2 · learn.css
+   ARCKHÉ · formato-curso-v2 · learn.css
    Camada de aprendizagem + sistema de temas (DESIGN-SPEC §3).
 
    ARQUITETURA DE COR EM 3 NÍVEIS (web.dev):
@@ -15,7 +15,7 @@
 
    Este arquivo NêO redefine utilitários Tailwind. Estiliza só:
      - os tokens semânticos (nível 3),
-     - o wrapper de prosa .inema-prose (prefs de leitura),
+     - o wrapper de prosa .ARCKHÉ-prose (prefs de leitura),
      - os componentes NOVOS da camada de aprendizagem.
    ============================================================================= */
 
@@ -31,10 +31,10 @@
 /* scroll-margin em TODO alvo de âncora: tópicos, blocos, headings, cards de
    módulo e qualquer elemento com id. Usa a altura do nav como offset. */
 :where([id]),
-:where([data-inema-topic]),
-:where([data-inema-block]),
-:where([data-inema-module]) {
-  scroll-margin-top: var(--inema-nav-h, 5rem);
+:where([data-ARCKHÉ-topic]),
+:where([data-ARCKHÉ-block]),
+:where([data-ARCKHÉ-module]) {
+  scroll-margin-top: var(--ARCKHÉ-nav-h, 5rem);
 }
 
 html {
@@ -57,7 +57,7 @@ html {
   --c-cyan-s: 92%;
   --c-cyan-l: 60%;
 
-  /* Sky — links externos INEMA.CLUB */
+  /* Sky — links externos ARCKHÉ AI */
   --c-sky-h: 204;
   --c-sky-s: 94%;
   --c-sky-l: 58%;
@@ -76,15 +76,15 @@ html {
   --c-warn-h:  0;   --c-warn-s:   72%; --c-warn-l:   51%; /* erro/alerta */
 
   /* === Variáveis de chassi (timing, raios) — neutras a tema === */
-  --inema-radius:    0.75rem;  /* 12px = rounded-xl da baseline */
-  --inema-radius-sm: 0.5rem;
-  --inema-radius-pill: 9999px;
-  --inema-nav-h: 5rem;
+  --ARCKHÉ-radius:    0.75rem;  /* 12px = rounded-xl da baseline */
+  --ARCKHÉ-radius-sm: 0.5rem;
+  --ARCKHÉ-radius-pill: 9999px;
+  --ARCKHÉ-nav-h: 5rem;
 
-  --inema-dur-fast: 120ms;
-  --inema-dur:      180ms;
-  --inema-dur-slow: 320ms;
-  --inema-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --ARCKHÉ-dur-fast: 120ms;
+  --ARCKHÉ-dur:      180ms;
+  --ARCKHÉ-dur-slow: 320ms;
+  --ARCKHÉ-ease: cubic-bezier(0.4, 0, 0.2, 1);
 
   /* === ACENTO POR TRILHA (data-accent) — default emerald (T1) ===
      O acento alimenta os componentes NOVOS e o <style> à mêo (nível 3 --accent).
@@ -95,7 +95,7 @@ html {
   /* offset de luminância aplicado em temas claros p/ texto de acento legível */
   --accent-l-text: var(--accent-l);
 
-  /* tipografia de prosa — defaults (sobrescritos por [data-font] / .inema-prose) */
+  /* tipografia de prosa — defaults (sobrescritos por [data-font] / .ARCKHÉ-prose) */
   --fs-root: 100%;
   --font-body: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-leitura: "Atkinson Hyperlegible", "Inter", ui-sans-serif, system-ui, sans-serif;
@@ -134,7 +134,7 @@ html {
   --accent-l-text: 30%;
 }
 
-/* ---- TEMA ESCURO = inema-dark (DEFAULT da marca, classe .dark) ----
+/* ---- TEMA ESCURO = ARCKHÉ-dark (DEFAULT da marca, classe .dark) ----
    Valores EXATOS da spec §3.4. Nunca #000/#fff puros. */
 .dark {
   color-scheme: dark;
@@ -225,18 +225,18 @@ html {
   --measure: 58ch;          /* coluna estreita */
   --lh-body: 1.75;          /* entrelinha maior */
 }
-[data-theme="foco"] .inema-prose {
+[data-theme="foco"] .ARCKHÉ-prose {
   margin-inline: auto;
 }
 /* esconde cromo decorativo lateral no modo foco (degrada: só some o que existe) */
-[data-theme="foco"] [data-inema-decor],
-[data-theme="foco"] [data-inema-stats-decor],
-[data-theme="foco"] [data-inema-toc] {
+[data-theme="foco"] [data-ARCKHÉ-decor],
+[data-theme="foco"] [data-ARCKHÉ-stats-decor],
+[data-theme="foco"] [data-ARCKHÉ-toc] {
   display: none !important;
 }
-[data-theme="foco"] [data-inema-nav-minimal] {
+[data-theme="foco"] [data-ARCKHÉ-nav-minimal] {
   /* nav minimal: encolhe paddings decorativos sem quebrar o markup */
-  --inema-nav-h: 3.5rem;
+  --ARCKHÉ-nav-h: 3.5rem;
 }
 
 /* re-deriva o nível 3 quando data-theme define hue/escuro (mantém cascata) */
@@ -256,7 +256,7 @@ html {
    chrome para os tokens semânticos, para que a TROCA DE TEMA transforme a
    página toda. `!important` para vencer o utilitário Tailwind e o override
    binário (ambos com especificidade alta). Só para os temas de COR data-theme;
-   claro/inema-dark continuam pelo mecanismo v1 intacto (Erro Crítico #5).
+   claro/ARCKHÉ-dark continuam pelo mecanismo v1 intacto (Erro Crítico #5).
    ============================================================================= */
 html[data-theme="sepia"] body,
 html[data-theme="contraste"] body { background-color: var(--bg) !important; color: var(--text); }
@@ -290,7 +290,7 @@ html[data-theme="sepia"] .border-dark-700,
 html[data-theme="contraste"] .border-dark-700 { border-color: var(--border) !important; }
 
 /* =============================================================================
-   4. .inema-prose — PREFERÊNCIAS DE LEITURA (unidades relativas; spec §3.5/3.6)
+   4. .ARCKHÉ-prose — PREFERÊNCIAS DE LEITURA (unidades relativas; spec §3.5/3.6)
    --measure clampa SÓ a prosa. Code/tabelas/grids NêO recebem --measure.
    ============================================================================= */
 
@@ -302,7 +302,7 @@ html[data-font="inter"]   { --font-body: "Inter", ui-sans-serif, system-ui, -app
 html[data-font="system"]  { --font-body: var(--font-system); }
 html[data-font="leitura"] { --font-body: var(--font-leitura); }
 
-.inema-prose {
+.ARCKHÉ-prose {
   /* medida (largura de linha) — clampa SÓ a prosa */
   --measure: 68ch;            /* default; 60 | 68 | 75 via [data-line-width] */
   /* corpo: tamanho relativo ao root (sobrevive a zoom 200%) */
@@ -322,52 +322,52 @@ html[data-font="leitura"] { --font-body: var(--font-leitura); }
   --space-section: 3rem;
 }
 
-/* preferências aplicadas via atributos no <html> (persistidas em inema.prefs) */
-html[data-line-width="60"] .inema-prose { --measure: 60ch; }
-html[data-line-width="68"] .inema-prose { --measure: 68ch; }
-html[data-line-width="75"] .inema-prose { --measure: 75ch; }
+/* preferências aplicadas via atributos no <html> (persistidas em ARCKHÉ.prefs) */
+html[data-line-width="60"] .ARCKHÉ-prose { --measure: 60ch; }
+html[data-line-width="68"] .ARCKHÉ-prose { --measure: 68ch; }
+html[data-line-width="75"] .ARCKHÉ-prose { --measure: 75ch; }
 
-html[data-leading="compacto"]    .inema-prose { --lh-body: 1.45; }
-html[data-leading="confortavel"] .inema-prose { --lh-body: 1.7; }
+html[data-leading="compacto"]    .ARCKHÉ-prose { --lh-body: 1.45; }
+html[data-leading="confortavel"] .ARCKHÉ-prose { --lh-body: 1.7; }
 
 /* parágrafos e ritmo vertical da prosa */
-.inema-prose > p,
-.inema-prose > ul,
-.inema-prose > ol,
-.inema-prose > blockquote {
+.ARCKHÉ-prose > p,
+.ARCKHÉ-prose > ul,
+.ARCKHÉ-prose > ol,
+.ARCKHÉ-prose > blockquote {
   margin-block: 0 var(--space-para);
   max-width: var(--measure);
 }
 
 /* títulos: mais margem em cima que embaixo (§3.6) */
-.inema-prose > h2,
-.inema-prose > h3,
-.inema-prose > h4 {
+.ARCKHÉ-prose > h2,
+.ARCKHÉ-prose > h3,
+.ARCKHÉ-prose > h4 {
   line-height: 1.25;
   margin-block: var(--space-section) 0.6em;
   max-width: var(--measure);
 }
-.inema-prose > h2:first-child,
-.inema-prose > h3:first-child { margin-block-start: 0; }
+.ARCKHÉ-prose > h2:first-child,
+.ARCKHÉ-prose > h3:first-child { margin-block-start: 0; }
 
 /* CÓDIGO / TABELAS / GRIDS / FIGURAS: NêO recebem --measure (largura plena) */
-.inema-prose pre,
-.inema-prose table,
-.inema-prose figure,
-.inema-prose .inema-grid,
-.inema-prose [data-inema-fullbleed] {
+.ARCKHÉ-prose pre,
+.ARCKHÉ-prose table,
+.ARCKHÉ-prose figure,
+.ARCKHÉ-prose .ARCKHÉ-grid,
+.ARCKHÉ-prose [data-ARCKHÉ-fullbleed] {
   max-width: none;
   width: 100%;
   /* line-height de código fica fixo, nêo herda o multiplicador de leitura */
   line-height: 1.5;
 }
-.inema-prose pre,
-.inema-prose code {
+.ARCKHÉ-prose pre,
+.ARCKHÉ-prose code {
   font-family: ui-monospace, "SFMono-Regular", "Menlo", "Consolas", monospace;
 }
 
 /* links de prosa usam o ACENTO de TEXTO (degrau correto por tema) */
-.inema-prose a {
+.ARCKHÉ-prose a {
   color: var(--accent-text);
   text-decoration-line: underline;
   text-decoration-thickness: 1px;
@@ -380,21 +380,21 @@ html[data-leading="confortavel"] .inema-prose { --lh-body: 1.7; }
    ============================================================================= */
 
 body,
-.inema-surface,
-[data-inema-card],
-[data-inema-read-toggle],
-[data-inema-doubt-toggle] {
+.ARCKHÉ-surface,
+[data-ARCKHÉ-card],
+[data-ARCKHÉ-read-toggle],
+[data-ARCKHÉ-doubt-toggle] {
   transition:
-    background-color var(--inema-dur) var(--inema-ease),
-    border-color     var(--inema-dur) var(--inema-ease),
-    color            var(--inema-dur) var(--inema-ease);
+    background-color var(--ARCKHÉ-dur) var(--ARCKHÉ-ease),
+    border-color     var(--ARCKHÉ-dur) var(--ARCKHÉ-ease),
+    color            var(--ARCKHÉ-dur) var(--ARCKHÉ-ease);
 }
 
 /* superfície utilitária reutilizável (componentes novos) */
-.inema-surface {
+.ARCKHÉ-surface {
   background-color: var(--surface);
   border: 1px solid var(--border);
-  border-radius: var(--inema-radius);
+  border-radius: var(--ARCKHÉ-radius);
   color: var(--text);
 }
 
@@ -439,11 +439,11 @@ body,
   border-radius: 2px;
 }
 /* nunca remover foco sem repor: garante anel mesmo em controles custom */
-[data-inema-read-toggle]:focus-visible,
-[data-inema-doubt-toggle]:focus-visible,
-[data-inema-journey-open]:focus-visible,
-.inema-appearance-trigger:focus-visible,
-.inema-swatch:focus-visible {
+[data-ARCKHÉ-read-toggle]:focus-visible,
+[data-ARCKHÉ-doubt-toggle]:focus-visible,
+[data-ARCKHÉ-journey-open]:focus-visible,
+.ARCKHÉ-appearance-trigger:focus-visible,
+.ARCKHÉ-swatch:focus-visible {
   outline: 3px solid var(--accent-2);
   outline-offset: 2px;
 }
@@ -458,8 +458,8 @@ body,
   background: var(--surface);
   color: var(--text);
   border: 1px solid var(--border-strong);
-  border-radius: var(--inema-radius-sm);
-  transition: top var(--inema-dur) var(--inema-ease);
+  border-radius: var(--ARCKHÉ-radius-sm);
+  transition: top var(--ARCKHÉ-dur) var(--ARCKHÉ-ease);
 }
 .skip:focus { top: 0.5rem; }
 
@@ -475,7 +475,7 @@ body,
   }
   html { scroll-behavior: auto; }
 }
-/* override explícito do aluno (inema.prefs.reducedMotionOverride) */
+/* override explícito do aluno (ARCKHÉ.prefs.reducedMotionOverride) */
 html[data-reduced-motion="reduce"] *,
 html[data-reduced-motion="reduce"] *::before,
 html[data-reduced-motion="reduce"] *::after {
@@ -488,7 +488,7 @@ html[data-reduced-motion="reduce"] *::after {
    NêO pode virar justify-center (Erro Crítico #1) -> justify-start.
    ============================================================================= */
 
-[data-inema-read-toggle] {
+[data-ARCKHÉ-read-toggle] {
   display: inline-flex;
   align-items: center;
   justify-content: flex-start;   /* #1: nunca center */
@@ -504,49 +504,49 @@ html[data-reduced-motion="reduce"] *::after {
   color: var(--text-muted);
   background-color: var(--surface);
   border: 1px solid var(--border);
-  border-radius: var(--inema-radius-sm);
+  border-radius: var(--ARCKHÉ-radius-sm);
   -webkit-user-select: none;
   user-select: none;
 }
-[data-inema-read-toggle]:hover {
+[data-ARCKHÉ-read-toggle]:hover {
   /* hover sutil: só cor de borda + bg levíssimo (anti-padrêo: nada de scale) */
   border-color: var(--border-strong);
   color: var(--text);
 }
 
 /* ícone: dois glifos, estado revelado por CSS (texto e cor acompanham) */
-[data-inema-read-toggle] .inema-ico-todo  { display: inline-flex; }
-[data-inema-read-toggle] .inema-ico-done  { display: none; }
-[data-inema-read-toggle] .inema-label-todo { display: inline; }
-[data-inema-read-toggle] .inema-label-done { display: none; }
+[data-ARCKHÉ-read-toggle] .ARCKHÉ-ico-todo  { display: inline-flex; }
+[data-ARCKHÉ-read-toggle] .ARCKHÉ-ico-done  { display: none; }
+[data-ARCKHÉ-read-toggle] .ARCKHÉ-label-todo { display: inline; }
+[data-ARCKHÉ-read-toggle] .ARCKHÉ-label-done { display: none; }
 
 /* ESTADO LIDO: aria-pressed=true (ou .is-read fallback) */
-[data-inema-read-toggle][aria-pressed="true"],
-[data-inema-read-toggle].is-read {
+[data-ARCKHÉ-read-toggle][aria-pressed="true"],
+[data-ARCKHÉ-read-toggle].is-read {
   color: var(--on-primary);
   background-color: var(--accent);
   border-color: var(--accent);
 }
-[data-inema-read-toggle][aria-pressed="true"] .inema-ico-todo,
-[data-inema-read-toggle].is-read .inema-ico-todo,
-[data-inema-read-toggle][aria-pressed="true"] .inema-label-todo,
-[data-inema-read-toggle].is-read .inema-label-todo { display: none; }
+[data-ARCKHÉ-read-toggle][aria-pressed="true"] .ARCKHÉ-ico-todo,
+[data-ARCKHÉ-read-toggle].is-read .ARCKHÉ-ico-todo,
+[data-ARCKHÉ-read-toggle][aria-pressed="true"] .ARCKHÉ-label-todo,
+[data-ARCKHÉ-read-toggle].is-read .ARCKHÉ-label-todo { display: none; }
 
-[data-inema-read-toggle][aria-pressed="true"] .inema-ico-done,
-[data-inema-read-toggle].is-read .inema-ico-done { display: inline-flex; }
-[data-inema-read-toggle][aria-pressed="true"] .inema-label-done,
-[data-inema-read-toggle].is-read .inema-label-done { display: inline; }
+[data-ARCKHÉ-read-toggle][aria-pressed="true"] .ARCKHÉ-ico-done,
+[data-ARCKHÉ-read-toggle].is-read .ARCKHÉ-ico-done { display: inline-flex; }
+[data-ARCKHÉ-read-toggle][aria-pressed="true"] .ARCKHÉ-label-done,
+[data-ARCKHÉ-read-toggle].is-read .ARCKHÉ-label-done { display: inline; }
 
 /* o "preencher" do check (micro-interaçêo contida; cresce e some sob reduce) */
-[data-inema-read-toggle] .inema-ico-done svg path {
+[data-ARCKHÉ-read-toggle] .ARCKHÉ-ico-done svg path {
   stroke-dasharray: 24;
   stroke-dashoffset: 0;
 }
-[data-inema-read-toggle][aria-pressed="true"] .inema-ico-done svg path,
-[data-inema-read-toggle].is-read .inema-ico-done svg path {
-  animation: inema-check-draw var(--inema-dur-slow) var(--inema-ease) both;
+[data-ARCKHÉ-read-toggle][aria-pressed="true"] .ARCKHÉ-ico-done svg path,
+[data-ARCKHÉ-read-toggle].is-read .ARCKHÉ-ico-done svg path {
+  animation: ARCKHÉ-check-draw var(--ARCKHÉ-dur-slow) var(--ARCKHÉ-ease) both;
 }
-@keyframes inema-check-draw {
+@keyframes ARCKHÉ-check-draw {
   from { stroke-dashoffset: 24; }
   to   { stroke-dashoffset: 0; }
 }
@@ -555,7 +555,7 @@ html[data-reduced-motion="reduce"] *::after {
    9. FLAG DE DÚVIDA (botêo rápido por tópico)
    ============================================================================= */
 
-[data-inema-doubt-toggle] {
+[data-ARCKHÉ-doubt-toggle] {
   display: inline-flex;
   align-items: center;
   justify-content: flex-start;
@@ -569,23 +569,23 @@ html[data-reduced-motion="reduce"] *::after {
   color: var(--text-muted);
   background-color: transparent;
   border: 1px solid var(--border);
-  border-radius: var(--inema-radius-pill);
+  border-radius: var(--ARCKHÉ-radius-pill);
 }
-[data-inema-doubt-toggle]:hover { border-color: var(--border-strong); color: var(--text); }
+[data-ARCKHÉ-doubt-toggle]:hover { border-color: var(--border-strong); color: var(--text); }
 
-[data-inema-doubt-toggle][aria-pressed="true"],
-[data-inema-doubt-toggle].is-doubt {
+[data-ARCKHÉ-doubt-toggle][aria-pressed="true"],
+[data-ARCKHÉ-doubt-toggle].is-doubt {
   color: hsl(var(--c-doubt-h) var(--c-doubt-s) 30%);
   background-color: hsl(var(--c-doubt-h) var(--c-doubt-s) var(--c-doubt-l) / 0.16);
   border-color: hsl(var(--c-doubt-h) var(--c-doubt-s) var(--c-doubt-l) / 0.55);
 }
-.dark [data-inema-doubt-toggle][aria-pressed="true"],
-.dark [data-inema-doubt-toggle].is-doubt,
-[data-theme="contraste"] [data-inema-doubt-toggle][aria-pressed="true"] {
+.dark [data-ARCKHÉ-doubt-toggle][aria-pressed="true"],
+.dark [data-ARCKHÉ-doubt-toggle].is-doubt,
+[data-theme="contraste"] [data-ARCKHÉ-doubt-toggle][aria-pressed="true"] {
   color: hsl(var(--c-doubt-h) 95% 70%);
 }
 /* "resolvido" rebaixa visualmente sem sumir */
-[data-inema-doubt-toggle][data-resolved="true"] {
+[data-ARCKHÉ-doubt-toggle][data-resolved="true"] {
   opacity: 0.7;
   text-decoration: line-through;
 }
@@ -595,7 +595,7 @@ html[data-reduced-motion="reduce"] *::after {
    Spans criados por TreeWalker. Devem ser legíveis em TODO tema.
    ============================================================================= */
 
-.inema-hl {
+.ARCKHÉ-hl {
   border-radius: 0.2em;
   padding: 0.02em 0.06em;
   box-decoration-break: clone;
@@ -604,29 +604,29 @@ html[data-reduced-motion="reduce"] *::after {
   cursor: pointer;
 }
 /* nasce com crescimento sutil ao aplicar (animaçêo some sob reduce) */
-.inema-hl { animation: inema-hl-grow var(--inema-dur) var(--inema-ease) both; }
-@keyframes inema-hl-grow {
+.ARCKHÉ-hl { animation: ARCKHÉ-hl-grow var(--ARCKHÉ-dur) var(--ARCKHÉ-ease) both; }
+@keyframes ARCKHÉ-hl-grow {
   from { background-size: 0% 100%; }
   to   { background-size: 100% 100%; }
 }
 
 /* tintas — usam alpha sobre o texto p/ nêo derrubar contraste do glifo */
-.inema-hl[data-hl="yellow"] { background-color: hsl(48  100% 50% / 0.32); }
-.inema-hl[data-hl="green"]  { background-color: hsl(142 71%  45% / 0.28); }
-.inema-hl[data-hl="blue"]   { background-color: hsl(204 94%  58% / 0.26); }
-.inema-hl[data-hl="pink"]   { background-color: hsl(330 81%  60% / 0.26); }
-.inema-hl[data-hl="doubt"]  {
+.ARCKHÉ-hl[data-hl="yellow"] { background-color: hsl(48  100% 50% / 0.32); }
+.ARCKHÉ-hl[data-hl="green"]  { background-color: hsl(142 71%  45% / 0.28); }
+.ARCKHÉ-hl[data-hl="blue"]   { background-color: hsl(204 94%  58% / 0.26); }
+.ARCKHÉ-hl[data-hl="pink"]   { background-color: hsl(330 81%  60% / 0.26); }
+.ARCKHÉ-hl[data-hl="doubt"]  {
   background-color: hsl(var(--c-doubt-h) var(--c-doubt-s) var(--c-doubt-l) / 0.24);
   border-bottom: 2px solid hsl(var(--c-doubt-h) var(--c-doubt-s) var(--c-doubt-l) / 0.7);
 }
 /* em dark, sobe um pouco o alpha p/ visibilidade */
-.dark .inema-hl[data-hl="yellow"] { background-color: hsl(48  100% 55% / 0.30); }
-.dark .inema-hl[data-hl="green"]  { background-color: hsl(142 71%  55% / 0.30); }
-.dark .inema-hl[data-hl="blue"]   { background-color: hsl(204 94%  62% / 0.30); }
-.dark .inema-hl[data-hl="pink"]   { background-color: hsl(330 81%  66% / 0.30); }
+.dark .ARCKHÉ-hl[data-hl="yellow"] { background-color: hsl(48  100% 55% / 0.30); }
+.dark .ARCKHÉ-hl[data-hl="green"]  { background-color: hsl(142 71%  55% / 0.30); }
+.dark .ARCKHÉ-hl[data-hl="blue"]   { background-color: hsl(204 94%  62% / 0.30); }
+.dark .ARCKHÉ-hl[data-hl="pink"]   { background-color: hsl(330 81%  66% / 0.30); }
 
 /* nota anexa: pequeno indicador depois do span (nêo vira seta perto de tópico, #2) */
-.inema-hl[data-has-note="true"]::after {
+.ARCKHÉ-hl[data-has-note="true"]::after {
   content: "";
   display: inline-block;
   width: 0.45em;
@@ -643,7 +643,7 @@ html[data-reduced-motion="reduce"] *::after {
    Posicionado via JS (getBoundingClientRect + scroll). Aqui só o visual.
    ============================================================================= */
 
-.inema-selpop {
+.ARCKHÉ-selpop {
   position: absolute;
   z-index: 90;
   display: flex;
@@ -652,23 +652,23 @@ html[data-reduced-motion="reduce"] *::after {
   padding: 0.4rem 0.5rem;
   background: var(--surface-2);
   border: 1px solid var(--border-strong);
-  border-radius: var(--inema-radius-pill);
+  border-radius: var(--ARCKHÉ-radius-pill);
   box-shadow: 0 6px 24px hsl(220 40% 4% / 0.28);
   /* aparece sem deslocar layout; some sob reduce preservando estado */
   opacity: 0;
   transform: translateY(2px);
   pointer-events: none;
-  transition: opacity var(--inema-dur-fast) var(--inema-ease),
-              transform var(--inema-dur-fast) var(--inema-ease);
+  transition: opacity var(--ARCKHÉ-dur-fast) var(--ARCKHÉ-ease),
+              transform var(--ARCKHÉ-dur-fast) var(--ARCKHÉ-ease);
 }
-.inema-selpop[data-open="true"] {
+.ARCKHÉ-selpop[data-open="true"] {
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
 }
 
 /* swatch de cor */
-.inema-swatch {
+.ARCKHÉ-swatch {
   inline-size: 1.4rem;
   block-size: 1.4rem;
   padding: 0;
@@ -676,28 +676,28 @@ html[data-reduced-motion="reduce"] *::after {
   border: 2px solid hsl(0 0% 100% / 0.35);
   cursor: pointer;
 }
-.inema-swatch[data-hl="yellow"] { background: hsl(48  100% 50%); }
-.inema-swatch[data-hl="green"]  { background: hsl(142 71%  45%); }
-.inema-swatch[data-hl="blue"]   { background: hsl(204 94%  52%); }
-.inema-swatch[data-hl="pink"]   { background: hsl(330 81%  58%); }
-.inema-swatch[data-hl="doubt"]  {
+.ARCKHÉ-swatch[data-hl="yellow"] { background: hsl(48  100% 50%); }
+.ARCKHÉ-swatch[data-hl="green"]  { background: hsl(142 71%  45%); }
+.ARCKHÉ-swatch[data-hl="blue"]   { background: hsl(204 94%  52%); }
+.ARCKHÉ-swatch[data-hl="pink"]   { background: hsl(330 81%  58%); }
+.ARCKHÉ-swatch[data-hl="doubt"]  {
   background: hsl(var(--c-doubt-h) var(--c-doubt-s) var(--c-doubt-l));
   /* reservado p/ "dúvida": anel distinto p/ leitura nêo-só-por-cor (1.4.1) */
   box-shadow: 0 0 0 2px var(--surface-2), 0 0 0 3px hsl(var(--c-doubt-h) var(--c-doubt-s) 40%);
 }
-.inema-swatch[aria-pressed="true"],
-.inema-swatch.is-active {
+.ARCKHÉ-swatch[aria-pressed="true"],
+.ARCKHÉ-swatch.is-active {
   border-color: var(--text);
   transform: scale(1.08);
 }
 
 /* separador e botões de açêo do popover */
-.inema-selpop__sep {
+.ARCKHÉ-selpop__sep {
   inline-size: 1px;
   block-size: 1.3rem;
   background: var(--border-strong);
 }
-.inema-selpop__action {
+.ARCKHÉ-selpop__action {
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
@@ -708,10 +708,10 @@ html[data-reduced-motion="reduce"] *::after {
   color: var(--text);
   background: transparent;
   border: none;
-  border-radius: var(--inema-radius-pill);
+  border-radius: var(--ARCKHÉ-radius-pill);
   cursor: pointer;
 }
-.inema-selpop__action:hover { background: hsl(0 0% 50% / 0.18); }
+.ARCKHÉ-selpop__action:hover { background: hsl(0 0% 50% / 0.18); }
 
 /* =============================================================================
    12. PAINEL "MINHA JORNADA" (modal/drawer acessível)
@@ -719,22 +719,22 @@ html[data-reduced-motion="reduce"] *::after {
    ============================================================================= */
 
 /* backdrop */
-.inema-journey-backdrop {
+.ARCKHÉ-journey-backdrop {
   position: fixed;
   inset: 0;
   z-index: 80;
   background: hsl(220 40% 4% / 0.55);
   opacity: 0;
   pointer-events: none;
-  transition: opacity var(--inema-dur) var(--inema-ease);
+  transition: opacity var(--ARCKHÉ-dur) var(--ARCKHÉ-ease);
 }
-.inema-journey-backdrop[data-open="true"] {
+.ARCKHÉ-journey-backdrop[data-open="true"] {
   opacity: 1;
   pointer-events: auto;
 }
 
 /* painel: drawer à direita no desktop, full-screen no mobile */
-.inema-journey {
+.ARCKHÉ-journey {
   position: fixed;
   z-index: 81;
   inset-block: 0;
@@ -747,15 +747,15 @@ html[data-reduced-motion="reduce"] *::after {
   box-shadow: -12px 0 40px hsl(220 40% 4% / 0.3);
   color: var(--text);
   transform: translateX(100%);
-  transition: transform var(--inema-dur-slow) var(--inema-ease);
+  transition: transform var(--ARCKHÉ-dur-slow) var(--ARCKHÉ-ease);
 }
-.inema-journey[data-open="true"] { transform: translateX(0); }
+.ARCKHÉ-journey[data-open="true"] { transform: translateX(0); }
 
 @media (max-width: 640px) {
-  .inema-journey { inline-size: 100%; border-inline-start: none; }
+  .ARCKHÉ-journey { inline-size: 100%; border-inline-start: none; }
 }
 
-.inema-journey__header {
+.ARCKHÉ-journey__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -763,19 +763,19 @@ html[data-reduced-motion="reduce"] *::after {
   padding: 1rem 1.25rem;
   border-bottom: 1px solid var(--border);
 }
-.inema-journey__title { font-size: 1.15rem; font-weight: 700; color: var(--text); }
-.inema-journey__close {
+.ARCKHÉ-journey__title { font-size: 1.15rem; font-weight: 700; color: var(--text); }
+.ARCKHÉ-journey__close {
   display: inline-flex; align-items: center; justify-content: center;
   inline-size: 2.25rem; block-size: 2.25rem;
-  border-radius: var(--inema-radius-sm);
+  border-radius: var(--ARCKHÉ-radius-sm);
   border: 1px solid var(--border);
   background: var(--surface);
   color: var(--text);
   cursor: pointer;
 }
-.inema-journey__close:hover { border-color: var(--border-strong); }
+.ARCKHÉ-journey__close:hover { border-color: var(--border-strong); }
 
-.inema-journey__body {
+.ARCKHÉ-journey__body {
   flex: 1 1 auto;
   overflow-y: auto;
   padding: 1.25rem;
@@ -783,7 +783,7 @@ html[data-reduced-motion="reduce"] *::after {
   flex-direction: column;
   gap: 1.5rem;
 }
-.inema-journey__section-title {
+.ARCKHÉ-journey__section-title {
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -793,7 +793,7 @@ html[data-reduced-motion="reduce"] *::after {
 }
 
 /* CTA "continuar de onde parei" */
-.inema-journey__resume {
+.ARCKHÉ-journey__resume {
   display: flex;
   align-items: center;
   gap: 0.6rem;
@@ -801,7 +801,7 @@ html[data-reduced-motion="reduce"] *::after {
   background: var(--accent);
   color: var(--on-primary);
   border: none;
-  border-radius: var(--inema-radius);
+  border-radius: var(--ARCKHÉ-radius);
   font: inherit;
   font-weight: 700;
   cursor: pointer;
@@ -809,15 +809,15 @@ html[data-reduced-motion="reduce"] *::after {
 }
 
 /* lista de itens (dúvidas / notas) — link de volta via âncora */
-.inema-journey__list { display: flex; flex-direction: column; gap: 0.6rem; list-style: none; margin: 0; padding: 0; }
-.inema-journey__item {
+.ARCKHÉ-journey__list { display: flex; flex-direction: column; gap: 0.6rem; list-style: none; margin: 0; padding: 0; }
+.ARCKHÉ-journey__item {
   padding: 0.75rem 0.85rem;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: var(--inema-radius-sm);
+  border-radius: var(--ARCKHÉ-radius-sm);
 }
-.inema-journey__item a { color: var(--accent-text); text-decoration: underline; text-underline-offset: 2px; }
-.inema-journey__quote {
+.ARCKHÉ-journey__item a { color: var(--accent-text); text-decoration: underline; text-underline-offset: 2px; }
+.ARCKHÉ-journey__quote {
   /* texto do aluno: SEMPRE via textContent no JS; aqui só estilo */
   font-style: italic;
   color: var(--text);
@@ -825,52 +825,52 @@ html[data-reduced-motion="reduce"] *::after {
   padding-inline-start: 0.6rem;
   margin-block: 0.3rem;
 }
-.inema-journey__note { color: var(--text-muted); font-size: 0.9rem; }
-.inema-journey__tag {
+.ARCKHÉ-journey__note { color: var(--text-muted); font-size: 0.9rem; }
+.ARCKHÉ-journey__tag {
   display: inline-block;
   padding: 0.05rem 0.5rem;
   font-size: 0.72rem;
   font-weight: 600;
-  border-radius: var(--inema-radius-pill);
+  border-radius: var(--ARCKHÉ-radius-pill);
   background: var(--surface-2);
   color: var(--text-muted);
 }
-.inema-journey__tag[data-tag="duvida"] {
+.ARCKHÉ-journey__tag[data-tag="duvida"] {
   color: hsl(var(--c-doubt-h) var(--c-doubt-s) 30%);
   background: hsl(var(--c-doubt-h) var(--c-doubt-s) var(--c-doubt-l) / 0.16);
 }
-.dark .inema-journey__tag[data-tag="duvida"],
-[data-theme="contraste"] .inema-journey__tag[data-tag="duvida"] {
+.dark .ARCKHÉ-journey__tag[data-tag="duvida"],
+[data-theme="contraste"] .ARCKHÉ-journey__tag[data-tag="duvida"] {
   color: hsl(var(--c-doubt-h) 95% 70%);
 }
 
 /* filtros da jornada (chips toggláveis) */
-.inema-journey__filters { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-.inema-filter-chip {
+.ARCKHÉ-journey__filters { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.ARCKHÉ-filter-chip {
   padding: 0.3rem 0.7rem;
   font: inherit; font-size: 0.82rem; font-weight: 600;
   color: var(--text-muted);
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: var(--inema-radius-pill);
+  border-radius: var(--ARCKHÉ-radius-pill);
   cursor: pointer;
 }
-.inema-filter-chip[aria-pressed="true"] {
+.ARCKHÉ-filter-chip[aria-pressed="true"] {
   color: var(--on-primary);
   background: var(--accent);
   border-color: var(--accent);
 }
 
 /* rodapé com export/import/reset */
-.inema-journey__footer {
+.ARCKHÉ-journey__footer {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
   padding: 1rem 1.25rem;
   border-top: 1px solid var(--border);
 }
-.inema-journey__footer button,
-.inema-journey__footer label {
+.ARCKHÉ-journey__footer button,
+.ARCKHÉ-journey__footer label {
   flex: 1 1 auto;
   display: inline-flex;
   align-items: center;
@@ -882,14 +882,14 @@ html[data-reduced-motion="reduce"] *::after {
   color: var(--text);
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: var(--inema-radius-sm);
+  border-radius: var(--ARCKHÉ-radius-sm);
   cursor: pointer;
 }
-.inema-journey__footer .inema-danger { color: hsl(var(--c-warn-h) var(--c-warn-s) 42%); }
-.dark .inema-journey__footer .inema-danger { color: hsl(var(--c-warn-h) 80% 66%); }
+.ARCKHÉ-journey__footer .ARCKHÉ-danger { color: hsl(var(--c-warn-h) var(--c-warn-s) 42%); }
+.dark .ARCKHÉ-journey__footer .ARCKHÉ-danger { color: hsl(var(--c-warn-h) 80% 66%); }
 
 /* badge de jornada na nav (reage aos CustomEvents) */
-.inema-journey-badge {
+.ARCKHÉ-journey-badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -901,66 +901,66 @@ html[data-reduced-motion="reduce"] *::after {
   line-height: 1;
   color: var(--on-primary);
   background: var(--accent);
-  border-radius: var(--inema-radius-pill);
+  border-radius: var(--ARCKHÉ-radius-pill);
 }
-.inema-journey-badge[data-count="0"] { display: none; }
+.ARCKHÉ-journey-badge[data-count="0"] { display: none; }
 
 /* =============================================================================
-   12b. BOTÕES BASE (.inema-btn) — usados por resume/footer/acoes do modulo JS
+   12b. BOTÕES BASE (.ARCKHÉ-btn) — usados por resume/footer/acoes do modulo JS
    Aparência sóbria coerente com a marca; sem scale/translate no hover (#9).
    ============================================================================= */
-.inema-btn {
+.ARCKHÉ-btn {
   display: inline-flex; align-items: center; justify-content: flex-start; gap: 0.5rem;
   padding: 0.5rem 0.85rem; border-radius: 0.6rem;
   border: 1px solid var(--border); background: var(--surface-2); color: var(--text);
   font: inherit; font-size: 0.92rem; font-weight: 600; cursor: pointer;
-  transition: border-color var(--inema-dur, .18s) var(--inema-ease, ease),
-              background-color var(--inema-dur, .18s) var(--inema-ease, ease),
-              color var(--inema-dur, .18s) var(--inema-ease, ease);
+  transition: border-color var(--ARCKHÉ-dur, .18s) var(--ARCKHÉ-ease, ease),
+              background-color var(--ARCKHÉ-dur, .18s) var(--ARCKHÉ-ease, ease),
+              color var(--ARCKHÉ-dur, .18s) var(--ARCKHÉ-ease, ease);
 }
-.inema-btn:hover { border-color: var(--border-strong, var(--border)); }
-.inema-btn--primary { background: var(--primary); color: var(--on-primary, #0a0e14); border-color: transparent; }
-.inema-btn--primary:hover { filter: brightness(1.05); }
-.inema-btn--ghost { background: transparent; }
-.inema-btn--ghost:hover { background: var(--surface-2); }
-.inema-btn--danger { color: hsl(var(--c-warn-h) var(--c-warn-s) 42%); }
-.dark .inema-btn--danger { color: hsl(var(--c-warn-h) 80% 66%); }
+.ARCKHÉ-btn:hover { border-color: var(--border-strong, var(--border)); }
+.ARCKHÉ-btn--primary { background: var(--primary); color: var(--on-primary, #0a0e14); border-color: transparent; }
+.ARCKHÉ-btn--primary:hover { filter: brightness(1.05); }
+.ARCKHÉ-btn--ghost { background: transparent; }
+.ARCKHÉ-btn--ghost:hover { background: var(--surface-2); }
+.ARCKHÉ-btn--danger { color: hsl(var(--c-warn-h) var(--c-warn-s) 42%); }
+.dark .ARCKHÉ-btn--danger { color: hsl(var(--c-warn-h) 80% 66%); }
 
 /* =============================================================================
-   13. PROGRESSO — ANÉIS / BARRAS (data-inema-meter; spec §2.2 / §5.7)
-   Derivado do DOM (JS escreve --inema-pct: 0..100). Exibe "N de M" + %.
+   13. PROGRESSO — ANÉIS / BARRAS (data-ARCKHÉ-meter; spec §2.2 / §5.7)
+   Derivado do DOM (JS escreve --ARCKHÉ-pct: 0..100). Exibe "N de M" + %.
    ============================================================================= */
 
 /* BARRA */
-[data-inema-meter] { --inema-pct: 0; }
+[data-ARCKHÉ-meter] { --ARCKHÉ-pct: 0; }
 
-.inema-bar {
+.ARCKHÉ-bar {
   display: block;
   inline-size: 100%;
   block-size: 0.5rem;
   background: var(--surface-2);
-  border-radius: var(--inema-radius-pill);
+  border-radius: var(--ARCKHÉ-radius-pill);
   overflow: hidden;
 }
-.inema-bar__fill {
+.ARCKHÉ-bar__fill {
   display: block;
   block-size: 100%;
-  inline-size: calc(var(--inema-pct, 0) * 1%);
+  inline-size: calc(var(--ARCKHÉ-pct, 0) * 1%);
   background: var(--accent);
   border-radius: inherit;
-  transition: inline-size var(--inema-dur-slow) var(--inema-ease);
+  transition: inline-size var(--ARCKHÉ-dur-slow) var(--ARCKHÉ-ease);
 }
 
 /* texto "N de M" + % — par sempre visível (nêo só barra/cor) */
-.inema-meter-label {
+.ARCKHÉ-meter-label {
   font-size: 0.82rem;
   font-weight: 600;
   color: var(--text-muted);
 }
-.inema-meter-label strong { color: var(--text); }
+.ARCKHÉ-meter-label strong { color: var(--text); }
 
-/* ANEL (conic-gradient dirigido por --inema-pct) */
-.inema-ring {
+/* ANEL (conic-gradient dirigido por --ARCKHÉ-pct) */
+.ARCKHÉ-ring {
   --ring-size: 3.5rem;
   --ring-thick: 0.4rem;
   position: relative;
@@ -969,19 +969,19 @@ html[data-reduced-motion="reduce"] *::after {
   border-radius: 50%;
   background:
     conic-gradient(
-      var(--accent) calc(var(--inema-pct, 0) * 1%),
+      var(--accent) calc(var(--ARCKHÉ-pct, 0) * 1%),
       var(--surface-2) 0
     );
-  transition: background var(--inema-dur-slow) var(--inema-ease);
+  transition: background var(--ARCKHÉ-dur-slow) var(--ARCKHÉ-ease);
 }
-.inema-ring::after {
+.ARCKHÉ-ring::after {
   content: "";
   position: absolute;
   inset: var(--ring-thick);
   border-radius: 50%;
   background: var(--bg);
 }
-.inema-ring__value {
+.ARCKHÉ-ring__value {
   position: absolute;
   inset: 0;
   display: flex;
@@ -993,14 +993,14 @@ html[data-reduced-motion="reduce"] *::after {
 }
 
 /* estado 100% — celebraçêo CONTIDA (sem confete/streak) */
-[data-inema-meter][data-complete="true"] .inema-bar__fill,
-[data-inema-meter][data-complete="true"].inema-ring {
+[data-ARCKHÉ-meter][data-complete="true"] .ARCKHÉ-bar__fill,
+[data-ARCKHÉ-meter][data-complete="true"].ARCKHÉ-ring {
   background: var(--primary);
 }
-[data-inema-meter][data-complete="true"] .inema-ring__value { color: var(--primary-ink); }
+[data-ARCKHÉ-meter][data-complete="true"] .ARCKHÉ-ring__value { color: var(--primary-ink); }
 
 /* toast discreto de conclusêo (some sob reduce preservando posiçêo final) */
-.inema-toast {
+.ARCKHÉ-toast {
   position: fixed;
   inset-block-end: 1.25rem;
   inset-inline: 0;
@@ -1012,33 +1012,33 @@ html[data-reduced-motion="reduce"] *::after {
   background: var(--surface-2);
   color: var(--text);
   border: 1px solid var(--border-strong);
-  border-radius: var(--inema-radius-pill);
+  border-radius: var(--ARCKHÉ-radius-pill);
   box-shadow: 0 8px 30px hsl(220 40% 4% / 0.3);
   opacity: 0;
   transform: translateY(0.5rem);
   pointer-events: none;
-  transition: opacity var(--inema-dur) var(--inema-ease),
-              transform var(--inema-dur) var(--inema-ease);
+  transition: opacity var(--ARCKHÉ-dur) var(--ARCKHÉ-ease),
+              transform var(--ARCKHÉ-dur) var(--ARCKHÉ-ease);
 }
-.inema-toast[data-open="true"] { opacity: 1; transform: translateY(0); }
+.ARCKHÉ-toast[data-open="true"] { opacity: 1; transform: translateY(0); }
 
 /* =============================================================================
-   14. TOC STICKY + SCROLLSPY (data-inema-toc; item ativo)
+   14. TOC STICKY + SCROLLSPY (data-ARCKHÉ-toc; item ativo)
    Colapsa p/ 1 coluna no mobile. Item ativo via .is-active (JS / IO).
    ============================================================================= */
 
-[data-inema-toc] {
+[data-ARCKHÉ-toc] {
   position: sticky;
-  top: var(--inema-nav-h);
+  top: var(--ARCKHÉ-nav-h);
   align-self: start;
-  max-block-size: calc(100vh - var(--inema-nav-h) - 1rem);
+  max-block-size: calc(100vh - var(--ARCKHÉ-nav-h) - 1rem);
   overflow-y: auto;
   padding: 0.5rem 0;
 }
-[data-inema-toc] ol,
-[data-inema-toc] ul { list-style: none; margin: 0; padding: 0; }
+[data-ARCKHÉ-toc] ol,
+[data-ARCKHÉ-toc] ul { list-style: none; margin: 0; padding: 0; }
 
-[data-inema-toc] a {
+[data-ARCKHÉ-toc] a {
   display: block;
   padding: 0.35rem 0.75rem;
   border-inline-start: 2px solid transparent;
@@ -1046,27 +1046,27 @@ html[data-reduced-motion="reduce"] *::after {
   text-decoration: none;
   font-size: 0.9rem;
   line-height: 1.35;
-  border-radius: 0 var(--inema-radius-sm) var(--inema-radius-sm) 0;
+  border-radius: 0 var(--ARCKHÉ-radius-sm) var(--ARCKHÉ-radius-sm) 0;
 }
-[data-inema-toc] a:hover { color: var(--text); background: var(--surface); }
+[data-ARCKHÉ-toc] a:hover { color: var(--text); background: var(--surface); }
 
 /* item ATIVO do scrollspy — cor + barra lateral + peso (nêo só cor) */
-[data-inema-toc] a.is-active,
-[data-inema-toc] a[aria-current="true"] {
+[data-ARCKHÉ-toc] a.is-active,
+[data-ARCKHÉ-toc] a[aria-current="true"] {
   color: var(--accent-text);
   border-inline-start-color: var(--accent);
   background: var(--surface);
   font-weight: 600;
 }
 /* item já lido no TOC (assistência visual) */
-[data-inema-toc] a[data-read="true"]::before {
+[data-ARCKHÉ-toc] a[data-read="true"]::before {
   content: "✓ ";
   color: var(--accent-text);
   font-weight: 700;
 }
 
 /* "Seçêo N de M" */
-.inema-toc-progress {
+.ARCKHÉ-toc-progress {
   padding: 0.5rem 0.75rem;
   font-size: 0.78rem;
   color: var(--text-muted);
@@ -1074,22 +1074,22 @@ html[data-reduced-motion="reduce"] *::after {
 
 @media (max-width: 1024px) {
   /* mobile: TOC vira bloco normal acima do conteúdo (1 coluna) */
-  [data-inema-toc] {
+  [data-ARCKHÉ-toc] {
     position: static;
     max-block-size: none;
     margin-block-end: 1.5rem;
     border: 1px solid var(--border);
-    border-radius: var(--inema-radius);
+    border-radius: var(--ARCKHÉ-radius);
     padding: 0.5rem;
   }
 }
 
 /* =============================================================================
    15. SELETOR DE APARÊNCIA (<button>-based; absorve o toggle sol/lua)
-   Estado por ÍCONE + TEXTO, nêo só cor (1.4.1). Persistido em inema.prefs (JS).
+   Estado por ÍCONE + TEXTO, nêo só cor (1.4.1). Persistido em ARCKHÉ.prefs (JS).
    ============================================================================= */
 
-.inema-appearance-trigger {
+.ARCKHÉ-appearance-trigger {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1100,13 +1100,13 @@ html[data-reduced-motion="reduce"] *::after {
   color: var(--text);
   background: transparent;
   border: 1px solid var(--border);
-  border-radius: var(--inema-radius-sm);
+  border-radius: var(--ARCKHÉ-radius-sm);
   cursor: pointer;
 }
-.inema-appearance-trigger:hover { border-color: var(--border-strong); }
+.ARCKHÉ-appearance-trigger:hover { border-color: var(--border-strong); }
 
 /* popover de aparência */
-.inema-appearance-pop {
+.ARCKHÉ-appearance-pop {
   position: absolute;
   z-index: 85;
   inline-size: min(20rem, calc(100vw - 1.5rem));
@@ -1114,7 +1114,7 @@ html[data-reduced-motion="reduce"] *::after {
   padding: 1rem;
   background: var(--surface);
   border: 1px solid var(--border-strong);
-  border-radius: var(--inema-radius);
+  border-radius: var(--ARCKHÉ-radius);
   box-shadow: 0 12px 40px hsl(220 40% 4% / 0.3);
   display: flex;
   flex-direction: column;
@@ -1122,17 +1122,17 @@ html[data-reduced-motion="reduce"] *::after {
   opacity: 0;
   transform: translateY(-4px);
   pointer-events: none;
-  transition: opacity var(--inema-dur) var(--inema-ease),
-              transform var(--inema-dur) var(--inema-ease);
+  transition: opacity var(--ARCKHÉ-dur) var(--ARCKHÉ-ease),
+              transform var(--ARCKHÉ-dur) var(--ARCKHÉ-ease);
 }
-.inema-appearance-pop[data-open="true"] {
+.ARCKHÉ-appearance-pop[data-open="true"] {
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
 }
 
-.inema-pref-group { display: flex; flex-direction: column; gap: 0.4rem; }
-.inema-pref-group__label {
+.ARCKHÉ-pref-group { display: flex; flex-direction: column; gap: 0.4rem; }
+.ARCKHÉ-pref-group__label {
   font-size: 0.74rem;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -1141,14 +1141,14 @@ html[data-reduced-motion="reduce"] *::after {
 }
 
 /* segmented control (tema / fonte / tamanho / entrelinha / medida) */
-.inema-segment {
+.ARCKHÉ-segment {
   display: flex;
   gap: 0.25rem;
   padding: 0.2rem;
   background: var(--surface-2);
-  border-radius: var(--inema-radius-sm);
+  border-radius: var(--ARCKHÉ-radius-sm);
 }
-.inema-segment > button {
+.ARCKHÉ-segment > button {
   flex: 1 1 auto;
   display: inline-flex;
   align-items: center;
@@ -1160,23 +1160,23 @@ html[data-reduced-motion="reduce"] *::after {
   color: var(--text-muted);
   background: transparent;
   border: none;
-  border-radius: calc(var(--inema-radius-sm) - 2px);
+  border-radius: calc(var(--ARCKHÉ-radius-sm) - 2px);
   cursor: pointer;
 }
-.inema-segment > button[aria-pressed="true"],
-.inema-segment > button.is-active {
+.ARCKHÉ-segment > button[aria-pressed="true"],
+.ARCKHÉ-segment > button.is-active {
   color: var(--text);
   background: var(--bg);
   box-shadow: 0 1px 2px hsl(220 40% 4% / 0.15);
 }
 
-/* paleta de acento — 6 cores de trilha INEMA (travada na família) */
-.inema-accent-grid {
+/* paleta de acento — 6 cores de trilha ARCKHÉ (travada na família) */
+.ARCKHÉ-accent-grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 0.5rem;
 }
-.inema-accent-grid > button {
+.ARCKHÉ-accent-grid > button {
   aspect-ratio: 1;
   inline-size: 100%;
   padding: 0;
@@ -1184,32 +1184,32 @@ html[data-reduced-motion="reduce"] *::after {
   border: 2px solid transparent;
   cursor: pointer;
 }
-.inema-accent-grid > button[data-accent="emerald"] { background: hsl(var(--c-emerald-h) var(--c-emerald-s) var(--c-emerald-l)); }
-.inema-accent-grid > button[data-accent="blue"]    { background: hsl(var(--c-blue-h) var(--c-blue-s) var(--c-blue-l)); }
-.inema-accent-grid > button[data-accent="purple"]  { background: hsl(var(--c-purple-h) var(--c-purple-s) var(--c-purple-l)); }
-.inema-accent-grid > button[data-accent="amber"]   { background: hsl(var(--c-track-amber-h) var(--c-track-amber-s) var(--c-track-amber-l)); }
-.inema-accent-grid > button[data-accent="teal"]    { background: hsl(var(--c-teal-h) var(--c-teal-s) var(--c-teal-l)); }
-.inema-accent-grid > button[data-accent="rose"]    { background: hsl(var(--c-rose-h) var(--c-rose-s) var(--c-rose-l)); }
-.inema-accent-grid > button[aria-pressed="true"],
-.inema-accent-grid > button.is-active {
+.ARCKHÉ-accent-grid > button[data-accent="emerald"] { background: hsl(var(--c-emerald-h) var(--c-emerald-s) var(--c-emerald-l)); }
+.ARCKHÉ-accent-grid > button[data-accent="blue"]    { background: hsl(var(--c-blue-h) var(--c-blue-s) var(--c-blue-l)); }
+.ARCKHÉ-accent-grid > button[data-accent="purple"]  { background: hsl(var(--c-purple-h) var(--c-purple-s) var(--c-purple-l)); }
+.ARCKHÉ-accent-grid > button[data-accent="amber"]   { background: hsl(var(--c-track-amber-h) var(--c-track-amber-s) var(--c-track-amber-l)); }
+.ARCKHÉ-accent-grid > button[data-accent="teal"]    { background: hsl(var(--c-teal-h) var(--c-teal-s) var(--c-teal-l)); }
+.ARCKHÉ-accent-grid > button[data-accent="rose"]    { background: hsl(var(--c-rose-h) var(--c-rose-s) var(--c-rose-l)); }
+.ARCKHÉ-accent-grid > button[aria-pressed="true"],
+.ARCKHÉ-accent-grid > button.is-active {
   border-color: var(--text);
   box-shadow: 0 0 0 2px var(--surface);
 }
 
 /* =============================================================================
-   16. CHECAGEM LEVE OPCIONAL (data-inema-check) — feedback NêO-bloqueante
+   16. CHECAGEM LEVE OPCIONAL (data-ARCKHÉ-check) — feedback NêO-bloqueante
    ============================================================================= */
 
-[data-inema-check] {
+[data-ARCKHÉ-check] {
   margin-block: 1.5rem 0;
   padding: 1rem 1.1rem;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: var(--inema-radius);
+  border-radius: var(--ARCKHÉ-radius);
 }
-.inema-check__q { font-weight: 600; color: var(--text); margin-block-end: 0.75rem; }
-.inema-check__options { display: flex; flex-direction: column; gap: 0.5rem; }
-.inema-check__option {
+.ARCKHÉ-check__q { font-weight: 600; color: var(--text); margin-block-end: 0.75rem; }
+.ARCKHÉ-check__options { display: flex; flex-direction: column; gap: 0.5rem; }
+.ARCKHÉ-check__option {
   display: flex;
   align-items: flex-start;
   gap: 0.5rem;
@@ -1219,80 +1219,80 @@ html[data-reduced-motion="reduce"] *::after {
   color: var(--text);
   background: var(--bg);
   border: 1px solid var(--border);
-  border-radius: var(--inema-radius-sm);
+  border-radius: var(--ARCKHÉ-radius-sm);
   cursor: pointer;
 }
-.inema-check__option:hover { border-color: var(--border-strong); }
+.ARCKHÉ-check__option:hover { border-color: var(--border-strong); }
 /* acerto */
-.inema-check__option[data-state="correct"] {
+.ARCKHÉ-check__option[data-state="correct"] {
   border-color: hsl(var(--c-ok-h) var(--c-ok-s) 40%);
   background: hsl(var(--c-ok-h) var(--c-ok-s) var(--c-ok-l) / 0.12);
 }
 /* erro escolhido */
-.inema-check__option[data-state="wrong"] {
+.ARCKHÉ-check__option[data-state="wrong"] {
   border-color: hsl(var(--c-warn-h) var(--c-warn-s) 45%);
   background: hsl(var(--c-warn-h) var(--c-warn-s) var(--c-warn-l) / 0.10);
 }
 /* feedback explicativo por opçêo (revelado após escolha) */
-.inema-check__feedback {
+.ARCKHÉ-check__feedback {
   margin-block-start: 0.6rem;
   font-size: 0.88rem;
   color: var(--text-muted);
 }
-.inema-check__feedback[data-tone="correct"] { color: hsl(var(--c-ok-h) var(--c-ok-s) 32%); }
-.dark .inema-check__feedback[data-tone="correct"] { color: hsl(var(--c-ok-h) 60% 60%); }
+.ARCKHÉ-check__feedback[data-tone="correct"] { color: hsl(var(--c-ok-h) var(--c-ok-s) 32%); }
+.dark .ARCKHÉ-check__feedback[data-tone="correct"] { color: hsl(var(--c-ok-h) 60% 60%); }
 
 /* =============================================================================
    17. "Indo mais fundo (opcional)" — divulgaçêo progressiva (<details>)
    ============================================================================= */
 
-.inema-prose details {
+.ARCKHÉ-prose details {
   margin-block: var(--space-para);
   border: 1px solid var(--border);
-  border-radius: var(--inema-radius);
+  border-radius: var(--ARCKHÉ-radius);
   background: var(--surface);
 }
-.inema-prose details > summary {
+.ARCKHÉ-prose details > summary {
   cursor: pointer;
   padding: 0.75rem 1rem;
   font-weight: 600;
   color: var(--text);
   list-style: none;
 }
-.inema-prose details > summary::-webkit-details-marker { display: none; }
-.inema-prose details > summary::after {
+.ARCKHÉ-prose details > summary::-webkit-details-marker { display: none; }
+.ARCKHÉ-prose details > summary::after {
   content: " +";
   color: var(--accent-text);
   font-weight: 700;
 }
-.inema-prose details[open] > summary::after { content: " −"; }
-.inema-prose details > :not(summary) {
+.ARCKHÉ-prose details[open] > summary::after { content: " −"; }
+.ARCKHÉ-prose details > :not(summary) {
   padding-inline: 1rem;
 }
-.inema-prose details > :last-child { padding-block-end: 1rem; }
+.ARCKHÉ-prose details > :last-child { padding-block-end: 1rem; }
 
 /* =============================================================================
    18. forced-colors (polish a11y — bordas sólidas no modo de alto contraste do SO)
    ============================================================================= */
 
 @media (forced-colors: active) {
-  [data-inema-read-toggle],
-  [data-inema-doubt-toggle],
-  .inema-surface,
-  .inema-journey,
-  .inema-selpop,
-  .inema-appearance-pop,
-  [data-inema-toc] a.is-active {
+  [data-ARCKHÉ-read-toggle],
+  [data-ARCKHÉ-doubt-toggle],
+  .ARCKHÉ-surface,
+  .ARCKHÉ-journey,
+  .ARCKHÉ-selpop,
+  .ARCKHÉ-appearance-pop,
+  [data-ARCKHÉ-toc] a.is-active {
     border: 1px solid CanvasText;
   }
   :focus-visible { outline: 3px solid Highlight; }
-  .inema-bar__fill,
-  .inema-ring { forced-color-adjust: none; }
+  .ARCKHÉ-bar__fill,
+  .ARCKHÉ-ring { forced-color-adjust: none; }
 }
 
 /* =============================================================================
    FIM — learn.css
    Página consome SÓ o nível 3 semântico (--bg/--surface/--text/--accent/…).
    Layer 1 = .dark (Tailwind). Layer 2 = data-theme (sepia/foco/contraste).
-   Acento por trilha = data-accent. Prefs de leitura = .inema-prose + data-* no html.
+   Acento por trilha = data-accent. Prefs de leitura = .ARCKHÉ-prose + data-* no html.
    ============================================================================= */

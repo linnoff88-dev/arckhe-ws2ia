@@ -1,4 +1,4 @@
-/* INEMA · nucleo v1 do curso: topicos expansiveis, modais e theme toggle.
+/* ARCKHÉ · nucleo v1 do curso: topicos expansiveis, modais e theme toggle.
    Carregar ANTES do learn.js (que so adiciona a camada de aprendizagem). */
 
 function toggleTopic(button) {
@@ -49,9 +49,9 @@ document.addEventListener('keydown', function (e) { if (e.key === 'Escape') clos
       htmlEl.style.colorScheme = dark ? 'dark' : 'light';
       try {
         localStorage.setItem('theme', dark ? 'dark' : 'light');
-        var p = JSON.parse(localStorage.getItem('inema.prefs') || '{}');
-        p.theme = dark ? 'inema-dark' : 'claro';
-        localStorage.setItem('inema.prefs', JSON.stringify(p));
+        var p = JSON.parse(localStorage.getItem('ARCKHÉ.prefs') || '{}');
+        p.theme = dark ? 'ARCKHÉ-dark' : 'claro';
+        localStorage.setItem('ARCKHÉ.prefs', JSON.stringify(p));
       } catch (e) {}
     });
   }

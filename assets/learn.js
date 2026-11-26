@@ -1,25 +1,25 @@
 /*!
- * INEMA learn.js — camada de aprendizagem v2 (formato-curso-v2)
+ * ARCKHÉ learn.js — camada de aprendizagem v2 (formato-curso-v2)
  * ------------------------------------------------------------------
- * Namespace unico: window.INEMA (IIFE inline, sem build, sem deps).
+ * Namespace unico: window.ARCKHÉ (IIFE inline, sem build, sem deps).
  * Enhancement progressivo: se isto quebrar ou o localStorage estiver
  * bloqueado, o curso continua 100% legivel. Toda I/O em wrappers
  * no-throw; falha sempre para o estado seguro. Modelo de dados = §1
  * do DESIGN-SPEC; API = §2; markup = §4.
  *
  * Chaves localStorage:
- *   inema.<courseId>.read   { "modulo-1-1#topico-3": true, ... }
- *   inema.<courseId>.doubts { "modulo-1-1#topico-3": { ts, resolved }, ... }
- *   inema.<courseId>.notes  { "<blockId>": [ {id,ts,color,quote,note,anchor,tags,orphan}, ... ], ... }
- *   inema.<courseId>.checks { "modulo-1-1#q1": { choice, correct, ts }, ... }
- *   inema.<courseId>.meta   { lastTopicAnchor, lastModuleHref, lastScroll, lastVisitedTs, completedAt? }
- *   inema.prefs (GLOBAL)    { schemaVersion, theme, font, fontScale, lineWidth, leading, accent, reducedMotionOverride? }
+ *   ARCKHÉ.<courseId>.read   { "modulo-1-1#topico-3": true, ... }
+ *   ARCKHÉ.<courseId>.doubts { "modulo-1-1#topico-3": { ts, resolved }, ... }
+ *   ARCKHÉ.<courseId>.notes  { "<blockId>": [ {id,ts,color,quote,note,anchor,tags,orphan}, ... ], ... }
+ *   ARCKHÉ.<courseId>.checks { "modulo-1-1#q1": { choice, correct, ts }, ... }
+ *   ARCKHÉ.<courseId>.meta   { lastTopicAnchor, lastModuleHref, lastScroll, lastVisitedTs, completedAt? }
+ *   ARCKHÉ.prefs (GLOBAL)    { schemaVersion, theme, font, fontScale, lineWidth, leading, accent, reducedMotionOverride? }
  */
 (function (window, document) {
   'use strict';
 
-  // Idempotencia dura: se ja existe um INEMA inicializado, nao recria.
-  if (window.INEMA && window.INEMA.__core) {
+  // Idempotencia dura: se ja existe um ARCKHÉ inicializado, nao recria.
+  if (window.ARCKHÉ && window.ARCKHÉ.__core) {
     return;
   }
 
@@ -31,7 +31,7 @@
 
   // Nomes canonicos das CSS vars (espelham §3.5 / learn.css).
   var coreVars = {
-    fontScale: '--inema-font-scale',   // multiplicador no :root (1 | 1.12 | 1.25)
+    fontScale: '--ARCKHÉ-font-scale',   // multiplicador no :root (1 | 1.12 | 1.25)
     measure: '--measure',              // largura da prosa (ch)
     leading: '--lh-body',              // entrelinha (multiplicador sem unidade)
     fontBody: '--font-body',           // familia da prosa
@@ -44,19 +44,19 @@
   // Defaults das prefs (sempre completos via getPrefs/migrate).
   var PREFS_DEFAULTS = {
     schemaVersion: SCHEMA_VERSION,
-    theme: 'inema-dark',     // inema-dark | claro | sepia | foco | contraste
+    theme: 'ARCKHÉ-dark',     // ARCKHÉ-dark | claro | sepia | foco | contraste
     font: 'inter',           // inter | system | leitura
     fontScale: 100,          // 100 | 112 | 125
     lineWidth: 68,           // 60 | 68 | 75  (ch)
     leading: 1.7,            // 1.45 | 1.7
-    accent: 'emerald',       // slug de trilha INEMA
+    accent: 'emerald',       // slug de trilha ARCKHÉ
     reducedMotionOverride: null // null | true | false
   };
 
   // Temas conhecidos -> como projetam nos dois layers (.dark + data-theme).
   // dark: classe .dark do Tailwind ON?  attr: valor de data-theme (null = ausente).
   var THEMES = {
-    'inema-dark': { dark: true, attr: null, colorScheme: 'dark' },
+    'ARCKHÉ-dark': { dark: true, attr: null, colorScheme: 'dark' },
     'claro': { dark: false, attr: null, colorScheme: 'light' },
     'sepia': { dark: false, attr: 'sepia', colorScheme: 'light' },
     'foco': { dark: 'inherit', attr: 'foco', colorScheme: 'inherit' }, // herda eixo claro/escuro atual
@@ -67,7 +67,7 @@
   var FONT_SCALES = [100, 112, 125];
   var LINE_WIDTHS = [60, 68, 75];
   var LEADINGS = [1.45, 1.7];
-  // Paleta travada nas 6 trilhas INEMA (h,s,l por slug). So afeta componentes novos.
+  // Paleta travada nas 6 trilhas ARCKHÉ (h,s,l por slug). So afeta componentes novos.
   var ACCENTS = {
     emerald: { h: 152, s: 76, l: 45 },
     blue: { h: 217, s: 91, l: 60 },
@@ -109,7 +109,7 @@
       var v = JSON.parse(str);
       return (v == null) ? fallback : v;
     } catch (e) {
-      warn('[INEMA] JSON corrompido, usando fallback:', e);
+      warn('[ARCKHÉ] JSON corrompido, usando fallback:', e);
       return fallback;
     }
   }
@@ -119,7 +119,7 @@
     try {
       var ls = window.localStorage;
       if (!ls) return false;
-      var k = '__inema_probe__';
+      var k = '__ARCKHÉ_probe__';
       ls.setItem(k, '1');
       var ok = ls.getItem(k) === '1';
       ls.removeItem(k);
@@ -137,7 +137,7 @@
     try {
       return window.localStorage.getItem(key);
     } catch (e) {
-      warn('[INEMA] getItem falhou:', e);
+      warn('[ARCKHÉ] getItem falhou:', e);
       return null;
     }
   }
@@ -155,7 +155,7 @@
       return true;
     } catch (e) {
       // Cota estourada: mantem estado anterior, sugere export, segue legivel.
-      warn('[INEMA] setItem falhou (cota?):', e);
+      warn('[ARCKHÉ] setItem falhou (cota?):', e);
       notify('Armazenamento cheio. Exporte sua jornada para nao perder dados.', 'warn');
       return false;
     }
@@ -171,7 +171,7 @@
       delete S.mem[key];
       return true;
     } catch (e) {
-      warn('[INEMA] removeItem falhou:', e);
+      warn('[ARCKHÉ] removeItem falhou:', e);
       return false;
     }
   }
@@ -195,7 +195,7 @@
     try {
       str = JSON.stringify(obj);
     } catch (e) {
-      warn('[INEMA] JSON.stringify falhou:', e);
+      warn('[ARCKHÉ] JSON.stringify falhou:', e);
       return false;
     }
     return rawSet(key, str);
@@ -206,23 +206,23 @@
     if (S.debouncers[name]) clearTimeout(S.debouncers[name]);
     S.debouncers[name] = setTimeout(function () {
       S.debouncers[name] = null;
-      try { fn(); } catch (e) { warn('[INEMA] debounce cb erro:', e); }
+      try { fn(); } catch (e) { warn('[ARCKHÉ] debounce cb erro:', e); }
     }, wait);
   }
 
   // Toast/aviso discreto, NAO-bloqueante. Tolerante a ausencia de DOM.
   function notify(msg, kind) {
     try {
-      var host = document.getElementById('inema-toast-host');
+      var host = document.getElementById('ARCKHÉ-toast-host');
       if (!host) {
         host = document.createElement('div');
-        host.id = 'inema-toast-host';
+        host.id = 'ARCKHÉ-toast-host';
         host.setAttribute('aria-live', 'polite');
-        host.className = 'inema-toast-host';
+        host.className = 'ARCKHÉ-toast-host';
         (document.body || document.documentElement).appendChild(host);
       }
       var t = document.createElement('div');
-      t.className = 'inema-toast' + (kind ? ' inema-toast--' + kind : '');
+      t.className = 'ARCKHÉ-toast' + (kind ? ' ARCKHÉ-toast--' + kind : '');
       t.setAttribute('data-open', 'false');
       t.textContent = msg; // textContent => anti-XSS
       host.appendChild(t);
@@ -237,7 +237,7 @@
         setTimeout(function () { try { host.removeChild(t); } catch (e) {} }, 400);
       }, 3200);
     } catch (e) {
-      warn('[INEMA] notify:', msg);
+      warn('[ARCKHÉ] notify:', msg);
     }
   }
 
@@ -265,14 +265,14 @@
     try {
       var ev;
       try {
-        ev = new CustomEvent('inema:' + name, { detail: detail || {}, bubbles: true });
+        ev = new CustomEvent('ARCKHÉ:' + name, { detail: detail || {}, bubbles: true });
       } catch (e) {
         // IE/old fallback
         ev = document.createEvent('CustomEvent');
-        ev.initCustomEvent('inema:' + name, true, false, detail || {});
+        ev.initCustomEvent('ARCKHÉ:' + name, true, false, detail || {});
       }
       (document || window).dispatchEvent(ev);
-    } catch (e) { warn('[INEMA] emit falhou:', name, e); }
+    } catch (e) { warn('[ARCKHÉ] emit falhou:', name, e); }
   }
 
   // ===================================================================
@@ -282,7 +282,7 @@
   function detectCourseId() {
     var id = null;
     try {
-      var m = document.querySelector('meta[name="inema-course"]');
+      var m = document.querySelector('meta[name="ARCKHÉ-course"]');
       if (m && m.getAttribute('content')) id = m.getAttribute('content').trim();
     } catch (e) {}
     if (!id) {
@@ -297,7 +297,7 @@
   }
 
   function key(name) {
-    return 'inema.' + S.courseId + '.' + name;
+    return 'ARCKHÉ.' + S.courseId + '.' + name;
   }
 
   function getRead() { return storageGet(key('read'), {}) || {}; }
@@ -313,7 +313,7 @@
   function setMeta(o) { return storageSet(key('meta'), o); }
 
   // ===================================================================
-  // 3. PREFS / TEMA (§2.8, §3) — global inema.prefs + fallback legado
+  // 3. PREFS / TEMA (§2.8, §3) — global ARCKHÉ.prefs + fallback legado
   // ===================================================================
 
   function migratePrefs(p) {
@@ -340,7 +340,7 @@
   }
 
   function getPrefs() {
-    var stored = storageGet('inema.prefs', null);
+    var stored = storageGet('ARCKHÉ.prefs', null);
     if (!stored) {
       // 1a carga: fallback ao localStorage.theme legado do v1 (nao resetar dark/light)
       var legacy = null;
@@ -348,7 +348,7 @@
       var seed = {};
       for (var k in PREFS_DEFAULTS) if (Object.prototype.hasOwnProperty.call(PREFS_DEFAULTS, k)) seed[k] = PREFS_DEFAULTS[k];
       if (legacy === 'light') seed.theme = 'claro';
-      else if (legacy === 'dark') seed.theme = 'inema-dark';
+      else if (legacy === 'dark') seed.theme = 'ARCKHÉ-dark';
       return migratePrefs(seed);
     }
     return migratePrefs(stored);
@@ -356,7 +356,7 @@
 
   function savePrefs(p) {
     var merged = migratePrefs(p);
-    storageSet('inema.prefs', merged);
+    storageSet('ARCKHÉ.prefs', merged);
     // mantem o legado em sincronia p/ paginas v1 que so leem localStorage.theme
     try {
       var t = THEMES[merged.theme];
@@ -402,7 +402,7 @@
       st.setProperty(coreVars.measure, p.lineWidth + 'ch');
       st.setProperty(coreVars.leading, p.leading.toString());
 
-      // .inema-prose REDECLARA --measure/--lh-body; o CSS so muda via atributos
+      // .ARCKHÉ-prose REDECLARA --measure/--lh-body; o CSS so muda via atributos
       // no <html>. Deriva o slug numerico/semantico do valor salvo.
       var lwNum = parseInt(p.lineWidth, 10);
       var lw = (LINE_WIDTHS.indexOf(lwNum) !== -1) ? lwNum : PREFS_DEFAULTS.lineWidth;
@@ -416,7 +416,7 @@
           : '"Inter", system-ui, sans-serif');
       st.setProperty(coreVars.fontBody, fam);
 
-      // Acento (HSL) — travado na familia INEMA.
+      // Acento (HSL) — travado na familia ARCKHÉ.
       var a = ACCENTS[p.accent] || ACCENTS.emerald;
       st.setProperty(coreVars.accentH, a.h + '');
       st.setProperty(coreVars.accentS, a.s + '%');
@@ -427,7 +427,7 @@
       if (p.reducedMotionOverride === true) html.setAttribute('data-reduced-motion', 'reduce');
       else html.removeAttribute('data-reduced-motion');
     } catch (e) {
-      warn('[INEMA] applyPrefs:', e);
+      warn('[ARCKHÉ] applyPrefs:', e);
     }
     return p;
   }
@@ -435,7 +435,7 @@
   function setPref(k, val) {
     var p = getPrefs();
     if (!Object.prototype.hasOwnProperty.call(PREFS_DEFAULTS, k)) {
-      warn('[INEMA] setPref: chave desconhecida', k);
+      warn('[ARCKHÉ] setPref: chave desconhecida', k);
       return p;
     }
     p[k] = val;
@@ -455,7 +455,7 @@
     else if (k === 'lineWidth') list = LINE_WIDTHS;
     else if (k === 'leading') list = LEADINGS;
     else if (k === 'accent') list = ACCENT_ORDER;
-    if (!list) { warn('[INEMA] cyclePref: chave nao-ciclavel', k); return p; }
+    if (!list) { warn('[ARCKHÉ] cyclePref: chave nao-ciclavel', k); return p; }
     cur = p[k];
     idx = list.indexOf(typeof cur === 'number' ? +cur : cur);
     var next = list[(idx + 1 + list.length) % list.length];
@@ -466,10 +466,10 @@
   // 4. PROGRESSO (derivado do DOM) — §2.2
   // ===================================================================
 
-  // Lista todos os ids de topico (data-inema-topic) no DOM, com escopo.
+  // Lista todos os ids de topico (data-ARCKHÉ-topic) no DOM, com escopo.
   function topicEls() {
     try {
-      return Array.prototype.slice.call(document.querySelectorAll('[data-inema-topic]'));
+      return Array.prototype.slice.call(document.querySelectorAll('[data-ARCKHÉ-topic]'));
     } catch (e) { return []; }
   }
 
@@ -481,18 +481,18 @@
     if ((m = /^trilha:(.+)$/.exec(scope))) {
       var trk = m[1];
       return els.filter(function (el) {
-        var holder = el.closest('[data-inema-track]');
-        return holder && holder.getAttribute('data-inema-track') === trk;
+        var holder = el.closest('[data-ARCKHÉ-track]');
+        return holder && holder.getAttribute('data-ARCKHÉ-track') === trk;
       });
     }
     if ((m = /^modulo:(.+)$/.exec(scope))) {
       var mod = m[1];
       return els.filter(function (el) {
-        var id = el.getAttribute('data-inema-topic') || '';
+        var id = el.getAttribute('data-ARCKHÉ-topic') || '';
         // id estavel = "modulo-X-Y#topico-N"; o prefixo de modulo bate com "modulo-X-Y"
         if (id.indexOf('modulo-' + mod + '#') === 0) return true;
-        var holder = el.closest('[data-inema-module]');
-        return holder && holder.getAttribute('data-inema-module') === mod;
+        var holder = el.closest('[data-ARCKHÉ-module]');
+        return holder && holder.getAttribute('data-ARCKHÉ-module') === mod;
       });
     }
     return els;
@@ -504,7 +504,7 @@
     var read = getRead();
     var done = 0;
     for (var i = 0; i < els.length; i++) {
-      var id = els[i].getAttribute('data-inema-topic');
+      var id = els[i].getAttribute('data-ARCKHÉ-topic');
       if (id && read[id] === true) done++;
     }
     return { done: done, total: els.length };
@@ -512,8 +512,8 @@
 
   // ---- Manifesto do curso (agregacao cross-pagina de progresso) ----
   // Cada pagina pode declarar a estrutura COMPLETA do curso via
-  //   <script type="application/json" data-inema-manifest>{...}</script>
-  // ou window.INEMA_MANIFEST. Sem manifesto, o progresso degrada para o DOM
+  //   <script type="application/json" data-ARCKHÉ-manifest>{...}</script>
+  // ou window.ARCKHÉ_MANIFEST. Sem manifesto, o progresso degrada para o DOM
   // da pagina atual (so o modulo corrente) — por isso a agregacao curso/trilha
   // entre paginas SO funciona com manifesto.
   var _manifest; // undefined = nao tentou; null = ausente
@@ -521,10 +521,10 @@
     if (_manifest !== undefined) return _manifest;
     _manifest = null;
     try {
-      if (window.INEMA_MANIFEST && typeof window.INEMA_MANIFEST === 'object') {
-        _manifest = window.INEMA_MANIFEST;
+      if (window.ARCKHÉ_MANIFEST && typeof window.ARCKHÉ_MANIFEST === 'object') {
+        _manifest = window.ARCKHÉ_MANIFEST;
       } else {
-        var s = document.querySelector('script[data-inema-manifest]');
+        var s = document.querySelector('script[data-ARCKHÉ-manifest]');
         if (s) _manifest = safeJSON(s.textContent, null);
       }
     } catch (e) { _manifest = null; }
@@ -633,29 +633,29 @@
   // Pinta o estado de um botao "marcar lido" e a secao correspondente.
   function paintReadControls(itemId, isOn) {
     try {
-      var btns = document.querySelectorAll('[data-inema-read-toggle]');
+      var btns = document.querySelectorAll('[data-ARCKHÉ-read-toggle]');
       for (var i = 0; i < btns.length; i++) {
         var b = btns[i];
-        var sec = b.closest('[data-inema-topic]');
-        var id = sec ? sec.getAttribute('data-inema-topic') : b.getAttribute('data-inema-read-toggle');
+        var sec = b.closest('[data-ARCKHÉ-topic]');
+        var id = sec ? sec.getAttribute('data-ARCKHÉ-topic') : b.getAttribute('data-ARCKHÉ-read-toggle');
         if (id !== itemId) continue;
         setReadButtonVisual(b, isOn, sec);
       }
-    } catch (e) { warn('[INEMA] paintReadControls:', e); }
+    } catch (e) { warn('[ARCKHÉ] paintReadControls:', e); }
   }
 
   function setReadButtonVisual(btn, isOn, sec) {
     btn.setAttribute('aria-pressed', isOn ? 'true' : 'false');
     btn.classList.toggle('is-read', isOn);
     // estado por icone+texto+cor (1.4.1): atualiza label se houver slot
-    var lbl = btn.querySelector('[data-inema-read-label]') || btn.querySelector('.inema-read-label');
+    var lbl = btn.querySelector('[data-ARCKHÉ-read-label]') || btn.querySelector('.ARCKHÉ-read-label');
     if (lbl) lbl.textContent = isOn ? 'Lido' : 'Marcar como lido';
     else if (!btn.querySelector('svg') && !btn.children.length) {
       btn.textContent = isOn ? 'Lido' : 'Marcar como lido';
     }
     // slot de icone legado (single-icon): troca o glifo. O padrao 4-span
-    // (.inema-ico-todo/.inema-ico-done) ja e regido por CSS via aria-pressed.
-    var ico = btn.querySelector('.inema-read-icon');
+    // (.ARCKHÉ-ico-todo/.ARCKHÉ-ico-done) ja e regido por CSS via aria-pressed.
+    var ico = btn.querySelector('.ARCKHÉ-read-icon');
     if (ico) ico.textContent = isOn ? '●' : '○';
     if (sec) sec.classList.toggle('is-read', isOn);
   }
@@ -663,14 +663,14 @@
   // Repinta todos os medidores visiveis (aneis/barras) no mesmo tick.
   function renderMeters() {
     try {
-      var meters = document.querySelectorAll('[data-inema-meter]');
+      var meters = document.querySelectorAll('[data-ARCKHÉ-meter]');
       for (var i = 0; i < meters.length; i++) {
         var el = meters[i];
-        var scope = el.getAttribute('data-inema-meter') || 'curso';
+        var scope = el.getAttribute('data-ARCKHÉ-meter') || 'curso';
         var pr = progress(scope);
         paintMeter(el, pr);
       }
-    } catch (e) { warn('[INEMA] renderMeters:', e); }
+    } catch (e) { warn('[ARCKHÉ] renderMeters:', e); }
   }
 
   function paintMeter(el, pr) {
@@ -680,24 +680,24 @@
     el.setAttribute('aria-valuemax', '100');
     el.setAttribute('aria-valuenow', String(pr.pct));
     el.setAttribute('aria-valuetext', pr.done + ' de ' + pr.total + ' (' + pr.pct + '%)');
-    // CSS multiplica por 1% (calc(var(--inema-pct) * 1%)) -> var unitless
-    el.style.setProperty('--inema-pct', String(pr.pct));
-    el.style.setProperty('--inema-pct-num', String(pr.pct));
+    // CSS multiplica por 1% (calc(var(--ARCKHÉ-pct) * 1%)) -> var unitless
+    el.style.setProperty('--ARCKHÉ-pct', String(pr.pct));
+    el.style.setProperty('--ARCKHÉ-pct-num', String(pr.pct));
     // estado 100% dispara a celebracao contida do CSS ([data-complete="true"])
     el.setAttribute('data-complete', (pr.total > 0 && pr.done === pr.total) ? 'true' : 'false');
 
     // Slots opcionais de texto.
-    var pctSlot = el.querySelector('[data-inema-meter-pct]') || el.querySelector('.inema-meter-pct');
+    var pctSlot = el.querySelector('[data-ARCKHÉ-meter-pct]') || el.querySelector('.ARCKHÉ-meter-pct');
     if (pctSlot) pctSlot.textContent = pr.pct + '%';
-    var fracSlot = el.querySelector('[data-inema-meter-frac]') || el.querySelector('.inema-meter-count') || el.querySelector('.inema-meter-frac');
+    var fracSlot = el.querySelector('[data-ARCKHÉ-meter-frac]') || el.querySelector('.ARCKHÉ-meter-count') || el.querySelector('.ARCKHÉ-meter-frac');
     if (fracSlot) fracSlot.textContent = pr.done + ' de ' + pr.total;
 
     // Barra: filete interno opcional.
-    var fill = el.querySelector('[data-inema-meter-fill]');
+    var fill = el.querySelector('[data-ARCKHÉ-meter-fill]');
     if (fill) fill.style.width = pr.pct + '%';
 
-    // Anel SVG: se houver <circle data-inema-ring> usa stroke-dashoffset.
-    var ring = el.querySelector('[data-inema-ring]');
+    // Anel SVG: se houver <circle data-ARCKHÉ-ring> usa stroke-dashoffset.
+    var ring = el.querySelector('[data-ARCKHÉ-ring]');
     if (ring) {
       try {
         var r = parseFloat(ring.getAttribute('r')) || 0;
@@ -750,11 +750,11 @@
 
   function paintDoubtControls(itemId, isOn) {
     try {
-      var btns = document.querySelectorAll('[data-inema-doubt-toggle]');
+      var btns = document.querySelectorAll('[data-ARCKHÉ-doubt-toggle]');
       for (var i = 0; i < btns.length; i++) {
         var b = btns[i];
-        var sec = b.closest('[data-inema-topic]');
-        var id = sec ? sec.getAttribute('data-inema-topic') : b.getAttribute('data-inema-doubt-toggle');
+        var sec = b.closest('[data-ARCKHÉ-topic]');
+        var id = sec ? sec.getAttribute('data-ARCKHÉ-topic') : b.getAttribute('data-ARCKHÉ-doubt-toggle');
         if (id !== itemId) continue;
         b.setAttribute('aria-pressed', isOn ? 'true' : 'false');
         b.classList.toggle('is-doubt', isOn);
@@ -797,11 +797,11 @@
   // 6. NOTAS / HIGHLIGHT — §2.4 (TreeWalker, nunca surroundContents)
   // ===================================================================
 
-  // Acha o bloco anotavel (data-inema-block) que contem o node.
+  // Acha o bloco anotavel (data-ARCKHÉ-block) que contem o node.
   function blockOf(node) {
     var el = (node && node.nodeType === 3) ? node.parentNode : node;
     if (!el || !el.closest) return null;
-    return el.closest('[data-inema-block]');
+    return el.closest('[data-ARCKHÉ-block]');
   }
 
   // Calcula offset de char dentro do bloco para um (node, offset) DOM.
@@ -828,7 +828,7 @@
     var n;
     while ((n = walker.nextNode())) {
       // pula text nodes que ja estao dentro de um highlight (evita aninhar)
-      if (n.parentNode && n.parentNode.closest && n.parentNode.closest('mark.inema-hl')) {
+      if (n.parentNode && n.parentNode.closest && n.parentNode.closest('mark.ARCKHÉ-hl')) {
         pos += n.nodeValue.length;
         continue;
       }
@@ -848,9 +848,9 @@
       var frag = document.createDocumentFragment();
       if (before) frag.appendChild(document.createTextNode(before));
       var mark = document.createElement('mark');
-      mark.className = 'inema-hl inema-hl--' + (opts.color || 'yellow');
-      mark.setAttribute('data-inema-note', opts.id);
-      mark.setAttribute('data-inema-color', opts.color || 'yellow');
+      mark.className = 'ARCKHÉ-hl ARCKHÉ-hl--' + (opts.color || 'yellow');
+      mark.setAttribute('data-ARCKHÉ-note', opts.id);
+      mark.setAttribute('data-ARCKHÉ-color', opts.color || 'yellow');
       mark.setAttribute('data-hl', opts.color || 'yellow');
       if (opts.note) mark.setAttribute('data-has-note', 'true');
       mark.appendChild(document.createTextNode(mid)); // textContent => anti-XSS
@@ -878,7 +878,7 @@
       // colapsa a selecao ao bloco inicial (E8: nao tenta cross-node)
       notify('Selecao limitada a um paragrafo.', 'warn');
     }
-    var blockId = block.getAttribute('data-inema-block');
+    var blockId = block.getAttribute('data-ARCKHÉ-block');
     if (!blockId) { notify('Este trecho nao e anotavel.', 'warn'); return null; }
 
     var startOffset, endOffset;
@@ -888,7 +888,7 @@
       var eo = (endBlock === block) ? range.endOffset : block.textContent.length;
       endOffset = ec ? charOffsetInBlock(block, ec, eo) : Math.min(startOffset + quote.length, block.textContent.length);
     } catch (e) {
-      warn('[INEMA] offsets falharam:', e);
+      warn('[ARCKHÉ] offsets falharam:', e);
       return null;
     }
     if (endOffset <= startOffset) endOffset = startOffset + quote.length;
@@ -957,7 +957,7 @@
     setNotes(f.notes);
     // marca visual de "tem nota"
     try {
-      var marks = document.querySelectorAll('mark[data-inema-note="' + cssAttrEsc(id) + '"]');
+      var marks = document.querySelectorAll('mark[data-ARCKHÉ-note="' + cssAttrEsc(id) + '"]');
       for (var i = 0; i < marks.length; i++) marks[i].setAttribute('data-has-note', 'true');
     } catch (e) {}
     emit('note', { id: id, hasNote: true });
@@ -972,7 +972,7 @@
       rec.note = (patch.note === null) ? null : String(patch.note);
       // sincroniza o indicador visual de nota nos marks
       try {
-        var nmarks = document.querySelectorAll('mark[data-inema-note="' + cssAttrEsc(id) + '"]');
+        var nmarks = document.querySelectorAll('mark[data-ARCKHÉ-note="' + cssAttrEsc(id) + '"]');
         for (var k = 0; k < nmarks.length; k++) {
           if (rec.note != null && rec.note !== '') nmarks[k].setAttribute('data-has-note', 'true');
           else nmarks[k].removeAttribute('data-has-note');
@@ -982,10 +982,10 @@
     if (patch.color !== undefined && SWATCHES.indexOf(patch.color) !== -1) {
       rec.color = patch.color;
       try {
-        var marks = document.querySelectorAll('mark[data-inema-note="' + cssAttrEsc(id) + '"]');
+        var marks = document.querySelectorAll('mark[data-ARCKHÉ-note="' + cssAttrEsc(id) + '"]');
         for (var i = 0; i < marks.length; i++) {
-          marks[i].className = 'inema-hl inema-hl--' + rec.color;
-          marks[i].setAttribute('data-inema-color', rec.color);
+          marks[i].className = 'ARCKHÉ-hl ARCKHÉ-hl--' + rec.color;
+          marks[i].setAttribute('data-ARCKHÉ-color', rec.color);
           marks[i].setAttribute('data-hl', rec.color);
         }
       } catch (e) {}
@@ -1001,7 +1001,7 @@
   // Desfaz spans (substitui por text node + normalize) e remove o registro.
   function removeNote(id) {
     try {
-      var marks = document.querySelectorAll('mark[data-inema-note="' + cssAttrEsc(id) + '"]');
+      var marks = document.querySelectorAll('mark[data-ARCKHÉ-note="' + cssAttrEsc(id) + '"]');
       var parents = [];
       for (var i = 0; i < marks.length; i++) {
         var mk = marks[i];
@@ -1014,7 +1014,7 @@
       for (var j = 0; j < parents.length; j++) {
         try { parents[j].normalize(); } catch (e) {}
       }
-    } catch (e) { warn('[INEMA] removeNote DOM:', e); }
+    } catch (e) { warn('[ARCKHÉ] removeNote DOM:', e); }
 
     var f = findNote(id);
     if (f) {
@@ -1034,7 +1034,7 @@
       if (!Object.prototype.hasOwnProperty.call(notes, blockId)) continue;
       var arr = notes[blockId] || [];
       var block = null;
-      try { block = root.querySelector('[data-inema-block="' + cssAttrEsc(blockId) + '"]'); } catch (e) {}
+      try { block = root.querySelector('[data-ARCKHÉ-block="' + cssAttrEsc(blockId) + '"]'); } catch (e) {}
       // ordena por offset desc p/ nao invalidar offsets ao inserir marks
       var ordered = arr.slice().sort(function (a, b) {
         var ao = (a.anchor && a.anchor.startOffset) || 0;
@@ -1046,7 +1046,7 @@
         var rec = ordered[i];
         try {
           // ja aplicada? (re-entrante)
-          if (document.querySelector('mark[data-inema-note="' + cssAttrEsc(rec.id) + '"]')) continue;
+          if (document.querySelector('mark[data-ARCKHÉ-note="' + cssAttrEsc(rec.id) + '"]')) continue;
           var marks = [];
           if (block && rec.anchor) {
             marks = wrapRangeInBlock(block, rec.anchor.startOffset, rec.anchor.endOffset, rec);
@@ -1063,7 +1063,7 @@
         } catch (e) {
           // nota individual falhou: marca orfa, segue para as outras (tolerante)
           rec.orphan = true; dirty = true;
-          warn('[INEMA] renderHighlights nota orfa:', rec.id, e);
+          warn('[ARCKHÉ] renderHighlights nota orfa:', rec.id, e);
         }
       }
       if (dirty) {
@@ -1076,7 +1076,7 @@
   function applyByQuoteAnywhere(root, rec) {
     // procura primeiro bloco anotavel cujo texto contem o quote
     try {
-      var blocks = root.querySelectorAll('[data-inema-block]');
+      var blocks = root.querySelectorAll('[data-ARCKHÉ-block]');
       for (var i = 0; i < blocks.length; i++) {
         if ((blocks[i].textContent || '').indexOf(rec.quote) !== -1) {
           return applyByQuote(blocks[i], rec);
@@ -1091,7 +1091,7 @@
   function buildSelectionPopover() {
     if (S.selPopover) return S.selPopover;
     var pop = document.createElement('div');
-    pop.className = 'inema-selpop';
+    pop.className = 'ARCKHÉ-selpop';
     pop.setAttribute('role', 'toolbar');
     pop.setAttribute('aria-label', 'Anotar selecao');
     pop.style.position = 'absolute';
@@ -1103,8 +1103,8 @@
     SWATCHES.forEach(function (c) {
       var b = document.createElement('button');
       b.type = 'button';
-      b.className = 'inema-swatch inema-swatch--' + c;
-      b.setAttribute('data-inema-swatch', c);
+      b.className = 'ARCKHÉ-swatch ARCKHÉ-swatch--' + c;
+      b.setAttribute('data-ARCKHÉ-swatch', c);
       b.setAttribute('data-hl', c);
       b.setAttribute('aria-label', c === 'doubt' ? 'Marcar como duvida' : ('Marcar com cor ' + c));
       b.textContent = c === 'doubt' ? '?' : '';
@@ -1113,15 +1113,15 @@
 
     var addBtn = document.createElement('button');
     addBtn.type = 'button';
-    addBtn.className = 'inema-selpop__action';
-    addBtn.setAttribute('data-inema-act', 'note');
+    addBtn.className = 'ARCKHÉ-selpop__action';
+    addBtn.setAttribute('data-ARCKHÉ-act', 'note');
     addBtn.textContent = 'Adicionar nota';
     pop.appendChild(addBtn);
 
     var copyBtn = document.createElement('button');
     copyBtn.type = 'button';
-    copyBtn.className = 'inema-selpop__action';
-    copyBtn.setAttribute('data-inema-act', 'copy');
+    copyBtn.className = 'ARCKHÉ-selpop__action';
+    copyBtn.setAttribute('data-ARCKHÉ-act', 'copy');
     copyBtn.textContent = 'Copiar';
     pop.appendChild(copyBtn);
 
@@ -1223,17 +1223,17 @@
       var nodes = (document.body || document.documentElement).children;
       for (var i = 0; i < nodes.length; i++) {
         var n = nodes[i];
-        if (n === dialog || n.id === 'inema-toast-host') continue;
+        if (n === dialog || n.id === 'ARCKHÉ-toast-host') continue;
         if (on) {
-          if (n.getAttribute('data-inema-prev-inert') == null) {
-            n.setAttribute('data-inema-prev-inert', n.hasAttribute('inert') ? '1' : '0');
+          if (n.getAttribute('data-ARCKHÉ-prev-inert') == null) {
+            n.setAttribute('data-ARCKHÉ-prev-inert', n.hasAttribute('inert') ? '1' : '0');
           }
           n.setAttribute('inert', '');
           n.setAttribute('aria-hidden', 'true');
         } else {
-          var prev = n.getAttribute('data-inema-prev-inert');
+          var prev = n.getAttribute('data-ARCKHÉ-prev-inert');
           if (prev === '0' || prev == null) { n.removeAttribute('inert'); n.removeAttribute('aria-hidden'); }
-          n.removeAttribute('data-inema-prev-inert');
+          n.removeAttribute('data-ARCKHÉ-prev-inert');
         }
       }
     } catch (e) {}
@@ -1244,16 +1244,16 @@
     S.journeyReturnFocus = document.activeElement;
 
     var backdrop = document.createElement('div');
-    backdrop.className = 'inema-journey-backdrop';
+    backdrop.className = 'ARCKHÉ-journey-backdrop';
     backdrop.addEventListener('mousedown', function (e) {
       if (e.target === backdrop) closeJourney();
     });
 
     var dialog = document.createElement('div');
-    dialog.className = 'inema-journey';
+    dialog.className = 'ARCKHÉ-journey';
     dialog.setAttribute('role', 'dialog');
     dialog.setAttribute('aria-modal', 'true');
-    dialog.setAttribute('aria-labelledby', 'inema-journey-title');
+    dialog.setAttribute('aria-labelledby', 'ARCKHÉ-journey-title');
     dialog.setAttribute('tabindex', '-1');
 
     backdrop.appendChild(dialog);
@@ -1287,7 +1287,7 @@
       return;
     }
     if (e.key === 'Tab' || e.keyCode === 9) {
-      var dialog = S.journeyEl ? S.journeyEl.querySelector('.inema-journey') : null;
+      var dialog = S.journeyEl ? S.journeyEl.querySelector('.ARCKHÉ-journey') : null;
       if (!dialog) return;
       var f = getFocusable(dialog);
       if (!f.length) { e.preventDefault(); dialog.focus(); return; }
@@ -1300,7 +1300,7 @@
   function closeJourney() {
     if (!S.journeyEl) return;
     var backdrop = S.journeyEl;
-    var dialog = backdrop.querySelector('.inema-journey');
+    var dialog = backdrop.querySelector('.ARCKHÉ-journey');
     setInertSiblings(backdrop, false);
     backdrop.removeEventListener('keydown', journeyKeydown);
     // gating de saida: data-open=false ANTES de remover (deixa a transicao rodar)
@@ -1337,23 +1337,23 @@
     mountEl.innerHTML = '';
 
     // header
-    var head = el('div', 'inema-journey__header');
-    var h = el('h2', 'inema-journey__title', 'Minha jornada');
-    h.id = 'inema-journey-title';
+    var head = el('div', 'ARCKHÉ-journey__header');
+    var h = el('h2', 'ARCKHÉ-journey__title', 'Minha jornada');
+    h.id = 'ARCKHÉ-journey-title';
     head.appendChild(h);
-    var closeB = el('button', 'inema-journey__close', 'Fechar');
+    var closeB = el('button', 'ARCKHÉ-journey__close', 'Fechar');
     closeB.type = 'button';
     closeB.setAttribute('aria-label', 'Fechar minha jornada');
     closeB.addEventListener('click', closeJourney);
     head.appendChild(closeB);
     mountEl.appendChild(head);
 
-    var body = el('div', 'inema-journey__body');
+    var body = el('div', 'ARCKHÉ-journey__body');
     mountEl.appendChild(body);
 
     // ---- Progresso (curso/trilhas/modulos) ----
-    var secP = el('section', 'inema-journey-sec');
-    secP.appendChild(el('h3', 'inema-journey__section-title', 'Progresso'));
+    var secP = el('section', 'ARCKHÉ-journey-sec');
+    secP.appendChild(el('h3', 'ARCKHÉ-journey__section-title', 'Progresso'));
     var cur = progress('curso');
     body.appendChild(secP);
     secP.appendChild(meterRow('Curso', cur));
@@ -1370,11 +1370,11 @@
         });
       });
     } else {
-      var tracks = uniqueAttr('[data-inema-track]', 'data-inema-track');
+      var tracks = uniqueAttr('[data-ARCKHÉ-track]', 'data-ARCKHÉ-track');
       tracks.forEach(function (tk) {
         secP.appendChild(meterRow('Trilha ' + tk, progress('trilha:' + tk)));
       });
-      var mods = uniqueAttr('[data-inema-module]', 'data-inema-module');
+      var mods = uniqueAttr('[data-ARCKHÉ-module]', 'data-ARCKHÉ-module');
       mods.forEach(function (md) {
         secP.appendChild(meterRow('Modulo ' + md, progress('modulo:' + md)));
       });
@@ -1383,9 +1383,9 @@
     // ---- Continuar de onde parei ----
     var meta = getMeta();
     if (meta.lastTopicAnchor || meta.lastModuleHref) {
-      var secC = el('section', 'inema-journey-sec');
-      secC.appendChild(el('h3', 'inema-journey__section-title', 'Continuar de onde parei'));
-      var resumeBtn = el('button', 'inema-journey__resume', 'Voltar ao ultimo ponto');
+      var secC = el('section', 'ARCKHÉ-journey-sec');
+      secC.appendChild(el('h3', 'ARCKHÉ-journey__section-title', 'Continuar de onde parei'));
+      var resumeBtn = el('button', 'ARCKHÉ-journey__resume', 'Voltar ao ultimo ponto');
       resumeBtn.type = 'button';
       resumeBtn.addEventListener('click', function () { closeJourney(); resume(); });
       secC.appendChild(resumeBtn);
@@ -1394,36 +1394,36 @@
 
     // ---- Duvidas (filtravel, com link de volta) ----
     var doubts = listDoubts();
-    var secD = el('section', 'inema-journey-sec');
-    secD.appendChild(el('h3', 'inema-journey__section-title', 'Duvidas (' + doubts.length + ')'));
-    var filterWrap = el('div', 'inema-journey__filters');
+    var secD = el('section', 'ARCKHÉ-journey-sec');
+    secD.appendChild(el('h3', 'ARCKHÉ-journey__section-title', 'Duvidas (' + doubts.length + ')'));
+    var filterWrap = el('div', 'ARCKHÉ-journey__filters');
     var onlyOpen = el('label', null, null);
     var cb = document.createElement('input'); cb.type = 'checkbox';
     onlyOpen.appendChild(cb); onlyOpen.appendChild(document.createTextNode(' so nao resolvidas'));
     filterWrap.appendChild(onlyOpen);
     secD.appendChild(filterWrap);
-    var doubtList = el('ul', 'inema-journey__list');
+    var doubtList = el('ul', 'ARCKHÉ-journey__list');
     secD.appendChild(doubtList);
     function paintDoubts() {
       doubtList.innerHTML = '';
       doubts.forEach(function (d) {
         if (cb.checked && d.resolved) return;
-        var li = el('li', 'inema-journey__item' + (d.resolved ? ' is-resolved' : ''));
+        var li = el('li', 'ARCKHÉ-journey__item' + (d.resolved ? ' is-resolved' : ''));
         var label = d.kind === 'topic'
           ? ('Topico: ' + d.id)
           : (d.quote ? ('"' + truncate(d.quote, 90) + '"') : 'Trecho marcado');
-        var a = el('a', 'inema-journey-link', label);
+        var a = el('a', 'ARCKHÉ-journey-link', label);
         a.href = '#';
         a.addEventListener('click', function (ev) {
           ev.preventDefault(); closeJourney(); jumpTo(d);
         });
         li.appendChild(a);
-        var tag = el('span', 'inema-journey__tag', 'duvida');
+        var tag = el('span', 'ARCKHÉ-journey__tag', 'duvida');
         tag.setAttribute('data-tag', 'duvida');
         li.appendChild(tag);
-        if (d.note) li.appendChild(el('p', 'inema-journey__note', d.note));
+        if (d.note) li.appendChild(el('p', 'ARCKHÉ-journey__note', d.note));
         if (d.kind === 'topic') {
-          var rb = el('button', 'inema-btn inema-btn--ghost', d.resolved ? 'Reabrir' : 'Marcar resolvida');
+          var rb = el('button', 'ARCKHÉ-btn ARCKHÉ-btn--ghost', d.resolved ? 'Reabrir' : 'Marcar resolvida');
           rb.type = 'button';
           rb.addEventListener('click', function () {
             setDoubtResolved(d.id, !d.resolved); d.resolved = !d.resolved; paintDoubts();
@@ -1432,7 +1432,7 @@
         }
         doubtList.appendChild(li);
       });
-      if (!doubtList.children.length) doubtList.appendChild(el('li', 'inema-journey-empty', 'Nenhuma duvida.'));
+      if (!doubtList.children.length) doubtList.appendChild(el('li', 'ARCKHÉ-journey-empty', 'Nenhuma duvida.'));
     }
     cb.addEventListener('change', paintDoubts);
     paintDoubts();
@@ -1440,9 +1440,9 @@
 
     // ---- Notas (filtravel por cor "duvida") ----
     var allNotes = flatNotes();
-    var secN = el('section', 'inema-journey-sec');
-    secN.appendChild(el('h3', 'inema-journey__section-title', 'Notas e marcacoes (' + allNotes.length + ')'));
-    var nFilter = el('div', 'inema-journey__filters');
+    var secN = el('section', 'ARCKHÉ-journey-sec');
+    secN.appendChild(el('h3', 'ARCKHÉ-journey__section-title', 'Notas e marcacoes (' + allNotes.length + ')'));
+    var nFilter = el('div', 'ARCKHÉ-journey__filters');
     var selColor = document.createElement('select');
     ['todas'].concat(SWATCHES).forEach(function (c) {
       var o = document.createElement('option'); o.value = c; o.textContent = c; selColor.appendChild(o);
@@ -1450,29 +1450,29 @@
     nFilter.appendChild(el('span', null, 'Cor: '));
     nFilter.appendChild(selColor);
     secN.appendChild(nFilter);
-    var noteList = el('ul', 'inema-journey__list');
+    var noteList = el('ul', 'ARCKHÉ-journey__list');
     secN.appendChild(noteList);
     function paintNotes() {
       noteList.innerHTML = '';
       allNotes.forEach(function (n) {
         if (selColor.value !== 'todas' && n.color !== selColor.value) return;
-        var li = el('li', 'inema-journey__item inema-color--' + n.color + (n.orphan ? ' is-orphan' : ''));
-        if (n.quote) li.appendChild(el('blockquote', 'inema-journey__quote', truncate(n.quote, 160)));
-        if (n.note) li.appendChild(el('p', 'inema-journey__note', n.note));
+        var li = el('li', 'ARCKHÉ-journey__item ARCKHÉ-color--' + n.color + (n.orphan ? ' is-orphan' : ''));
+        if (n.quote) li.appendChild(el('blockquote', 'ARCKHÉ-journey__quote', truncate(n.quote, 160)));
+        if (n.note) li.appendChild(el('p', 'ARCKHÉ-journey__note', n.note));
         if (n.color === 'doubt') {
-          var ntag = el('span', 'inema-journey__tag', 'duvida');
+          var ntag = el('span', 'ARCKHÉ-journey__tag', 'duvida');
           ntag.setAttribute('data-tag', 'duvida');
           li.appendChild(ntag);
         }
-        if (n.orphan) li.appendChild(el('span', 'inema-journey-orphan', 'nota sem ancora'));
-        var actions = el('div', 'inema-journey-actions');
+        if (n.orphan) li.appendChild(el('span', 'ARCKHÉ-journey-orphan', 'nota sem ancora'));
+        var actions = el('div', 'ARCKHÉ-journey-actions');
         if (!n.orphan) {
-          var go = el('button', 'inema-btn inema-btn--ghost', 'Ir ao trecho');
+          var go = el('button', 'ARCKHÉ-btn ARCKHÉ-btn--ghost', 'Ir ao trecho');
           go.type = 'button';
           go.addEventListener('click', function () { closeJourney(); jumpTo({ kind: 'note', id: n.id, blockId: n.blockId }); });
           actions.appendChild(go);
         }
-        var del = el('button', 'inema-btn inema-btn--ghost', 'Excluir');
+        var del = el('button', 'ARCKHÉ-btn ARCKHÉ-btn--ghost', 'Excluir');
         del.type = 'button';
         del.addEventListener('click', function () {
           removeNote(n.id);
@@ -1482,23 +1482,23 @@
         li.appendChild(actions);
         noteList.appendChild(li);
       });
-      if (!noteList.children.length) noteList.appendChild(el('li', 'inema-journey-empty', 'Nenhuma nota.'));
+      if (!noteList.children.length) noteList.appendChild(el('li', 'ARCKHÉ-journey-empty', 'Nenhuma nota.'));
     }
     selColor.addEventListener('change', paintNotes);
     paintNotes();
     body.appendChild(secN);
 
     // ---- Export / Import / Reset ----
-    var secX = el('section', 'inema-journey-sec');
-    secX.appendChild(el('h3', 'inema-journey__section-title', 'Backup'));
-    var row = el('div', 'inema-journey__footer');
+    var secX = el('section', 'ARCKHÉ-journey-sec');
+    secX.appendChild(el('h3', 'ARCKHÉ-journey__section-title', 'Backup'));
+    var row = el('div', 'ARCKHÉ-journey__footer');
 
-    var expBtn = el('button', 'inema-btn', 'Exportar .json');
+    var expBtn = el('button', 'ARCKHÉ-btn', 'Exportar .json');
     expBtn.type = 'button';
     expBtn.addEventListener('click', downloadJSON);
     row.appendChild(expBtn);
 
-    var impLabel = el('label', 'inema-btn', 'Importar .json');
+    var impLabel = el('label', 'ARCKHÉ-btn', 'Importar .json');
     var impInput = document.createElement('input');
     impInput.type = 'file'; impInput.accept = 'application/json,.json';
     impInput.style.display = 'none';
@@ -1521,7 +1521,7 @@
     impLabel.appendChild(impInput);
     row.appendChild(impLabel);
 
-    var resetBtn = el('button', 'inema-btn inema-danger', 'Apagar tudo');
+    var resetBtn = el('button', 'ARCKHÉ-btn ARCKHÉ-danger', 'Apagar tudo');
     resetBtn.type = 'button';
     resetBtn.addEventListener('click', function () {
       if (window.confirm('Apagar TODO o progresso, duvidas e notas deste curso? Esta acao nao pode ser desfeita.')) {
@@ -1538,19 +1538,19 @@
   }
 
   function meterRow(label, pr) {
-    var row = el('div', 'inema-journey-meter');
-    row.appendChild(el('span', 'inema-journey-meter-label', label));
-    var bar = el('div', 'inema-bar');
+    var row = el('div', 'ARCKHÉ-journey-meter');
+    row.appendChild(el('span', 'ARCKHÉ-journey-meter-label', label));
+    var bar = el('div', 'ARCKHÉ-bar');
     bar.setAttribute('role', 'progressbar');
     bar.setAttribute('aria-valuemin', '0');
     bar.setAttribute('aria-valuemax', '100');
     bar.setAttribute('aria-valuenow', String(pr.pct));
     bar.setAttribute('aria-valuetext', pr.done + ' de ' + pr.total + ' (' + pr.pct + '%)');
-    var fill = el('div', 'inema-bar__fill');
+    var fill = el('div', 'ARCKHÉ-bar__fill');
     fill.style.width = pr.pct + '%';
     bar.appendChild(fill);
     row.appendChild(bar);
-    row.appendChild(el('span', 'inema-journey-meter-frac', pr.done + ' de ' + pr.total + ' (' + pr.pct + '%)'));
+    row.appendChild(el('span', 'ARCKHÉ-journey-meter-frac', pr.done + ' de ' + pr.total + ' (' + pr.pct + '%)'));
     return row;
   }
 
@@ -1594,11 +1594,11 @@
   function jumpTo(item) {
     var target = null;
     if (item.kind === 'topic') {
-      try { target = document.querySelector('[data-inema-topic="' + cssAttrEsc(item.id) + '"]'); } catch (e) {}
+      try { target = document.querySelector('[data-ARCKHÉ-topic="' + cssAttrEsc(item.id) + '"]'); } catch (e) {}
     } else if (item.kind === 'note') {
-      try { target = document.querySelector('mark[data-inema-note="' + cssAttrEsc(item.id) + '"]'); } catch (e) {}
+      try { target = document.querySelector('mark[data-ARCKHÉ-note="' + cssAttrEsc(item.id) + '"]'); } catch (e) {}
       if (!target && item.blockId) {
-        try { target = document.querySelector('[data-inema-block="' + cssAttrEsc(item.blockId) + '"]'); } catch (e) {}
+        try { target = document.querySelector('[data-ARCKHÉ-block="' + cssAttrEsc(item.blockId) + '"]'); } catch (e) {}
       }
     }
     if (target && target.scrollIntoView) {
@@ -1625,8 +1625,8 @@
   function flashTarget(target) {
     if (reducedMotion()) return;
     try {
-      target.classList.add('inema-flash');
-      setTimeout(function () { target.classList.remove('inema-flash'); }, 1200);
+      target.classList.add('ARCKHÉ-flash');
+      setTimeout(function () { target.classList.remove('ARCKHÉ-flash'); }, 1200);
     } catch (e) {}
   }
 
@@ -1659,7 +1659,7 @@
         if (r.bottom > 0 && r.top < bestTop) { bestTop = r.top; best = els[i]; }
       } catch (e) {}
     }
-    return best ? best.getAttribute('data-inema-topic') : null;
+    return best ? best.getAttribute('data-ARCKHÉ-topic') : null;
   }
 
   function resume() {
@@ -1667,7 +1667,7 @@
     var anchor = meta.lastTopicAnchor;
     if (anchor) {
       var target = null;
-      try { target = document.querySelector('[data-inema-topic="' + cssAttrEsc(anchor) + '"]'); } catch (e) {}
+      try { target = document.querySelector('[data-ARCKHÉ-topic="' + cssAttrEsc(anchor) + '"]'); } catch (e) {}
       if (target && target.scrollIntoView) {
         openAncestors(target);
         target.scrollIntoView({ behavior: 'auto', block: 'start' }); // ancora estavel, nao scrollY cru
@@ -1715,18 +1715,18 @@
       var url = URL.createObjectURL(blob);
       var a = document.createElement('a');
       a.href = url;
-      a.download = 'inema-' + S.courseId + '-' + new Date().toISOString().slice(0, 10) + '.json';
+      a.download = 'ARCKHÉ-' + S.courseId + '-' + new Date().toISOString().slice(0, 10) + '.json';
       (document.body || document.documentElement).appendChild(a);
       a.click();
       setTimeout(function () {
         try { document.body.removeChild(a); URL.revokeObjectURL(url); } catch (e) {}
       }, 100);
     } catch (e) {
-      warn('[INEMA] download falhou, fallback data-uri:', e);
+      warn('[ARCKHÉ] download falhou, fallback data-uri:', e);
       try {
         var a2 = document.createElement('a');
         a2.href = 'data:application/json;charset=utf-8,' + encodeURIComponent(str);
-        a2.download = 'inema-' + S.courseId + '.json';
+        a2.download = 'ARCKHÉ-' + S.courseId + '.json';
         a2.click();
       } catch (e2) { notify('Nao foi possivel exportar.', 'warn'); }
     }
@@ -1877,12 +1877,12 @@
 
   function paintCheckFeedback(id, choice, correct, def) {
     try {
-      var host = document.querySelector('[data-inema-check="' + cssAttrEsc(id) + '"]');
+      var host = document.querySelector('[data-ARCKHÉ-check="' + cssAttrEsc(id) + '"]');
       if (!host) return;
-      var fb = host.querySelector('[data-inema-check-feedback]');
+      var fb = host.querySelector('[data-ARCKHÉ-check-feedback]');
       if (!fb) {
-        fb = el('div', 'inema-check-feedback');
-        fb.setAttribute('data-inema-check-feedback', '');
+        fb = el('div', 'ARCKHÉ-check-feedback');
+        fb.setAttribute('data-ARCKHÉ-check-feedback', '');
         host.appendChild(fb);
       }
       fb.innerHTML = '';
@@ -1892,13 +1892,13 @@
       var expl = (def && def.explain && def.explain[choice]) ? def.explain[choice] : '';
       fb.appendChild(el('p', null, msg + expl));
       // realca a opcao escolhida
-      var opts = host.querySelectorAll('[data-inema-check-option]');
+      var opts = host.querySelectorAll('[data-ARCKHÉ-check-option]');
       for (var i = 0; i < opts.length; i++) {
-        var v = opts[i].getAttribute('data-inema-check-option');
+        var v = opts[i].getAttribute('data-ARCKHÉ-check-option');
         opts[i].classList.toggle('is-chosen', String(v) === String(choice));
         opts[i].classList.toggle('is-answer', def && String(v) === String(def.answer));
       }
-    } catch (e) { warn('[INEMA] check feedback:', e); }
+    } catch (e) { warn('[ARCKHÉ] check feedback:', e); }
   }
 
   // ===================================================================
@@ -1909,15 +1909,15 @@
     // reflete estado por icone+texto nos controles existentes
     try {
       var p = getPrefs();
-      var panels = document.querySelectorAll('[data-inema-appearance]');
+      var panels = document.querySelectorAll('[data-ARCKHÉ-appearance]');
       for (var i = 0; i < panels.length; i++) {
         var panel = panels[i];
-        markActive(panel, '[data-inema-set-theme]', 'data-inema-set-theme', p.theme);
-        markActive(panel, '[data-inema-set-font]', 'data-inema-set-font', p.font);
-        markActive(panel, '[data-inema-set-fontscale]', 'data-inema-set-fontscale', String(p.fontScale));
-        markActive(panel, '[data-inema-set-linewidth]', 'data-inema-set-linewidth', String(p.lineWidth));
-        markActive(panel, '[data-inema-set-leading]', 'data-inema-set-leading', String(p.leading));
-        markActive(panel, '[data-inema-set-accent]', 'data-inema-set-accent', p.accent);
+        markActive(panel, '[data-ARCKHÉ-set-theme]', 'data-ARCKHÉ-set-theme', p.theme);
+        markActive(panel, '[data-ARCKHÉ-set-font]', 'data-ARCKHÉ-set-font', p.font);
+        markActive(panel, '[data-ARCKHÉ-set-fontscale]', 'data-ARCKHÉ-set-fontscale', String(p.fontScale));
+        markActive(panel, '[data-ARCKHÉ-set-linewidth]', 'data-ARCKHÉ-set-linewidth', String(p.lineWidth));
+        markActive(panel, '[data-ARCKHÉ-set-leading]', 'data-ARCKHÉ-set-leading', String(p.leading));
+        markActive(panel, '[data-ARCKHÉ-set-accent]', 'data-ARCKHÉ-set-accent', p.accent);
       }
       // toggle sol/lua legado: mantem icones coerentes se existirem
       syncLegacyThemeIcons();
@@ -1952,42 +1952,42 @@
     if (!t || !t.closest) return;
 
     // marcar lido
-    var rt = t.closest('[data-inema-read-toggle]');
+    var rt = t.closest('[data-ARCKHÉ-read-toggle]');
     if (rt) {
-      var sec = rt.closest('[data-inema-topic]');
-      var id = sec ? sec.getAttribute('data-inema-topic') : rt.getAttribute('data-inema-read-toggle');
+      var sec = rt.closest('[data-ARCKHÉ-topic]');
+      var id = sec ? sec.getAttribute('data-ARCKHÉ-topic') : rt.getAttribute('data-ARCKHÉ-read-toggle');
       if (id) { markRead(id, !isRead(id)); }
       return;
     }
     // duvida rapida
-    var dt = t.closest('[data-inema-doubt-toggle]');
+    var dt = t.closest('[data-ARCKHÉ-doubt-toggle]');
     if (dt) {
-      var dsec = dt.closest('[data-inema-topic]');
-      var did = dsec ? dsec.getAttribute('data-inema-topic') : dt.getAttribute('data-inema-doubt-toggle');
+      var dsec = dt.closest('[data-ARCKHÉ-topic]');
+      var did = dsec ? dsec.getAttribute('data-ARCKHÉ-topic') : dt.getAttribute('data-ARCKHÉ-doubt-toggle');
       if (did) toggleDoubt(did);
       return;
     }
     // abrir jornada
-    var jo = t.closest('[data-inema-journey-open]');
+    var jo = t.closest('[data-ARCKHÉ-journey-open]');
     if (jo) { e.preventDefault(); openJourney(); return; }
 
     // remover/editar highlight clicando no mark (abre prompt simples)
-    var mk = t.closest('mark.inema-hl');
+    var mk = t.closest('mark.ARCKHÉ-hl');
     if (mk) {
       onMarkClick(mk, e);
       return;
     }
 
-    // seletor de aparencia (botoes data-inema-set-*)
+    // seletor de aparencia (botoes data-ARCKHÉ-set-*)
     handleAppearanceClick(t);
 
     // checagem leve
-    var opt = t.closest('[data-inema-check-option]');
+    var opt = t.closest('[data-ARCKHÉ-check-option]');
     if (opt) {
-      var checkHost = opt.closest('[data-inema-check]');
+      var checkHost = opt.closest('[data-ARCKHÉ-check]');
       if (checkHost) {
-        var cid = checkHost.getAttribute('data-inema-check');
-        submitCheck(cid, opt.getAttribute('data-inema-check-option'));
+        var cid = checkHost.getAttribute('data-ARCKHÉ-check');
+        submitCheck(cid, opt.getAttribute('data-ARCKHÉ-check-option'));
       }
       return;
     }
@@ -1995,12 +1995,12 @@
 
   function handleAppearanceClick(t) {
     var map = [
-      ['data-inema-set-theme', 'theme'],
-      ['data-inema-set-font', 'font'],
-      ['data-inema-set-fontscale', 'fontScale'],
-      ['data-inema-set-linewidth', 'lineWidth'],
-      ['data-inema-set-leading', 'leading'],
-      ['data-inema-set-accent', 'accent']
+      ['data-ARCKHÉ-set-theme', 'theme'],
+      ['data-ARCKHÉ-set-font', 'font'],
+      ['data-ARCKHÉ-set-fontscale', 'fontScale'],
+      ['data-ARCKHÉ-set-linewidth', 'lineWidth'],
+      ['data-ARCKHÉ-set-leading', 'leading'],
+      ['data-ARCKHÉ-set-accent', 'accent']
     ];
     for (var i = 0; i < map.length; i++) {
       var btn = t.closest('[' + map[i][0] + ']');
@@ -2014,13 +2014,13 @@
       }
     }
     // botoes de ciclo
-    var cyc = t.closest('[data-inema-cycle]');
-    if (cyc) { cyclePref(cyc.getAttribute('data-inema-cycle')); return true; }
+    var cyc = t.closest('[data-ARCKHÉ-cycle]');
+    if (cyc) { cyclePref(cyc.getAttribute('data-ARCKHÉ-cycle')); return true; }
     // toggle de painel de aparencia
-    var toggleBtn = t.closest('[data-inema-appearance-toggle]');
+    var toggleBtn = t.closest('[data-ARCKHÉ-appearance-toggle]');
     if (toggleBtn) {
-      var targetSel = toggleBtn.getAttribute('data-inema-appearance-toggle');
-      var panel = targetSel ? document.querySelector(targetSel) : document.querySelector('[data-inema-appearance]');
+      var targetSel = toggleBtn.getAttribute('data-ARCKHÉ-appearance-toggle');
+      var panel = targetSel ? document.querySelector(targetSel) : document.querySelector('[data-ARCKHÉ-appearance]');
       if (panel) {
         var open = panel.getAttribute('data-open') !== 'true';
         panel.setAttribute('data-open', open ? 'true' : 'false');
@@ -2032,19 +2032,19 @@
   }
 
   function onMarkClick(mark, e) {
-    var id = mark.getAttribute('data-inema-note');
+    var id = mark.getAttribute('data-ARCKHÉ-note');
     if (!id) return;
     // mini-menu: nota / cor / excluir
-    var existing = document.getElementById('inema-mark-menu');
+    var existing = document.getElementById('ARCKHÉ-mark-menu');
     if (existing) try { existing.parentNode.removeChild(existing); } catch (err) {}
-    var menu = el('div', 'inema-mark-menu');
-    menu.id = 'inema-mark-menu';
+    var menu = el('div', 'ARCKHÉ-mark-menu');
+    menu.id = 'ARCKHÉ-mark-menu';
     menu.style.position = 'absolute';
     var r = mark.getBoundingClientRect();
     menu.style.top = (r.bottom + (window.scrollY || 0) + 4) + 'px';
     menu.style.left = (r.left + (window.scrollX || 0)) + 'px';
 
-    var noteBtn = el('button', 'inema-btn inema-btn--ghost', 'Nota');
+    var noteBtn = el('button', 'ARCKHÉ-btn ARCKHÉ-btn--ghost', 'Nota');
     noteBtn.type = 'button';
     noteBtn.addEventListener('click', function () {
       var f = findNote(id);
@@ -2055,7 +2055,7 @@
     });
     menu.appendChild(noteBtn);
 
-    var delBtn = el('button', 'inema-btn inema-btn--ghost', 'Excluir');
+    var delBtn = el('button', 'ARCKHÉ-btn ARCKHÉ-btn--ghost', 'Excluir');
     delBtn.type = 'button';
     delBtn.addEventListener('click', function () { removeNote(id); removeMarkMenu(); });
     menu.appendChild(delBtn);
@@ -2064,7 +2064,7 @@
   }
 
   function removeMarkMenu() {
-    var m = document.getElementById('inema-mark-menu');
+    var m = document.getElementById('ARCKHÉ-mark-menu');
     if (m) try { m.parentNode.removeChild(m); } catch (e) {}
   }
 
@@ -2072,17 +2072,17 @@
   function onSelPopClick(e) {
     var t = e.target;
     if (!t || !t.closest) return;
-    var sw = t.closest('[data-inema-swatch]');
+    var sw = t.closest('[data-ARCKHÉ-swatch]');
     if (sw) {
-      var color = sw.getAttribute('data-inema-swatch');
+      var color = sw.getAttribute('data-ARCKHÉ-swatch');
       var r = currentRange();
       if (r) highlight(r, { color: color });
       clearSelectionAndHide();
       return;
     }
-    var act = t.closest('[data-inema-act]');
+    var act = t.closest('[data-ARCKHÉ-act]');
     if (act) {
-      var a = act.getAttribute('data-inema-act');
+      var a = act.getAttribute('data-ARCKHÉ-act');
       var rng = currentRange();
       if (a === 'copy' && rng) { copyText(rng.toString()); clearSelectionAndHide(); return; }
       if (a === 'note' && rng) {
@@ -2102,11 +2102,11 @@
 
   // scrollspy / TOC
   function setupTOC() {
-    var toc = document.querySelector('[data-inema-toc]');
+    var toc = document.querySelector('[data-ARCKHÉ-toc]');
     var topics = topicEls();
     if (!topics.length) return;
     // indicador "Secao N de M"
-    var counter = document.querySelector('[data-inema-section-counter]');
+    var counter = document.querySelector('[data-ARCKHÉ-section-counter]');
     if (!('IntersectionObserver' in window)) {
       // sem IO: degrade silencioso (links do TOC ainda funcionam)
       return;
@@ -2114,7 +2114,7 @@
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (!en.isIntersecting) return;
-        var id = en.target.getAttribute('data-inema-topic');
+        var id = en.target.getAttribute('data-ARCKHÉ-topic');
         if (toc) {
           var links = toc.querySelectorAll('a[href]');
           for (var i = 0; i < links.length; i++) {
@@ -2140,20 +2140,20 @@
       var read = getRead();
       for (var id in read) if (read[id] === true) paintReadControls(id, true);
       // garante estado off coerente p/ os demais botoes
-      var btns = document.querySelectorAll('[data-inema-read-toggle]');
+      var btns = document.querySelectorAll('[data-ARCKHÉ-read-toggle]');
       for (var i = 0; i < btns.length; i++) {
-        var sec = btns[i].closest('[data-inema-topic]');
-        var bid = sec ? sec.getAttribute('data-inema-topic') : btns[i].getAttribute('data-inema-read-toggle');
+        var sec = btns[i].closest('[data-ARCKHÉ-topic]');
+        var bid = sec ? sec.getAttribute('data-ARCKHÉ-topic') : btns[i].getAttribute('data-ARCKHÉ-read-toggle');
         setReadButtonVisual(btns[i], read[bid] === true, sec);
       }
     } catch (e) {}
     // pinta duvidas
     try {
       var d = getDoubts();
-      var dbtns = document.querySelectorAll('[data-inema-doubt-toggle]');
+      var dbtns = document.querySelectorAll('[data-ARCKHÉ-doubt-toggle]');
       for (var k = 0; k < dbtns.length; k++) {
-        var dsec = dbtns[k].closest('[data-inema-topic]');
-        var did = dsec ? dsec.getAttribute('data-inema-topic') : dbtns[k].getAttribute('data-inema-doubt-toggle');
+        var dsec = dbtns[k].closest('[data-ARCKHÉ-topic]');
+        var did = dsec ? dsec.getAttribute('data-ARCKHÉ-topic') : dbtns[k].getAttribute('data-ARCKHÉ-doubt-toggle');
         paintDoubtControls(did, !!d[did]);
       }
     } catch (e) {}
@@ -2167,12 +2167,12 @@
 
   function updateJourneyBadge() {
     try {
-      var badges = document.querySelectorAll('[data-inema-journey-badge]');
+      var badges = document.querySelectorAll('[data-ARCKHÉ-journey-badge]');
       if (!badges.length) return;
       var doubts = listDoubts().filter(function (d) { return !d.resolved; }).length;
       var pr = progress('curso');
       for (var i = 0; i < badges.length; i++) {
-        badges[i].classList.add('inema-journey-badge');
+        badges[i].classList.add('ARCKHÉ-journey-badge');
         badges[i].textContent = String(doubts);
         badges[i].setAttribute('data-doubts', String(doubts));
         // data-count gateia o display via CSS ([data-count="0"]{display:none})
@@ -2201,13 +2201,13 @@
     // fechar popover em mousedown fora / selecao vazia
     document.addEventListener('mousedown', function (e) {
       if (S.selPopover && S.selPopover.style.display !== 'none') {
-        if (!e.target.closest || !e.target.closest('.inema-selpop')) {
+        if (!e.target.closest || !e.target.closest('.ARCKHÉ-selpop')) {
           // se clicou fora do popover, deixa o mouseup decidir; mas se selecao colapsou, esconde
           if (!currentRange()) hideSelectionPopover();
         }
       }
       // fecha mini-menu do mark
-      if (!e.target.closest || !e.target.closest('#inema-mark-menu')) removeMarkMenu();
+      if (!e.target.closest || !e.target.closest('#ARCKHÉ-mark-menu')) removeMarkMenu();
     });
 
     // clicks no proprio popover de selecao
@@ -2257,7 +2257,7 @@
 
     S.inited = true;
     emit('progress', { kind: 'init', progress: progress('curso') });
-    return window.INEMA;
+    return window.ARCKHÉ;
   }
 
   // ===================================================================
@@ -2310,14 +2310,14 @@
     }
   };
 
-  window.INEMA = API;
+  window.ARCKHÉ = API;
 
   // auto-boot leve: aplica prefs assim que possivel; init completo no DOMContentLoaded
   // (o anti-FOUC bloqueante no <head> ja aplicou tema antes do paint; isto reforca)
   try {
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', function () {
-        // nao auto-init: a pagina chama INEMA.init() no fim do body (snippet canonico).
+        // nao auto-init: a pagina chama ARCKHÉ.init() no fim do body (snippet canonico).
         // mas aplica prefs cedo p/ componentes que dependem das CSS vars.
         applyPrefs();
       });
